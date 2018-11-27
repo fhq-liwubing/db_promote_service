@@ -1,4 +1,4 @@
-package com.db.promote.db.master;
+package com.db.promote.dao;
 
 import com.db.promote.entity.Commpay;
 import org.apache.ibatis.annotations.Mapper;

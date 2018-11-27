@@ -2,7 +2,7 @@ package com.db.promote.component;
 
 import com.db.promote.entity.Commpay;
 import com.db.promote.service.CommpayService;
-import com.db.promote.utils.GsonUtil;
+import com.db.promote.util.GsonUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;

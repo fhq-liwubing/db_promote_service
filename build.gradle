@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.2.RELEASE'
+        springBootVersion = '1.5.9.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -105,7 +105,7 @@ dependencies {
     compile("javax.mail:mail:1.4.1")
 
     compile('org.projectlombok:lombok')
-
+    compile 'org.apache.shiro:shiro-spring:1.4.0'
 
 }
 

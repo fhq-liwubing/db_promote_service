@@ -1,6 +1,6 @@
 package com.db.promote.service;
 
-import com.db.promote.db.master.CommpayDao;
+import com.db.promote.dao.CommpayDao;
 import com.db.promote.entity.Commpay;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

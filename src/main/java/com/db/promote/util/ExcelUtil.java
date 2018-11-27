@@ -1,9 +1,11 @@
-package com.db.promote.utils;
+package com.db.promote.util;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.*;
 import org.apache.poi.ss.usermodel.*;
 import org.apache.poi.ss.util.CellRangeAddress;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.io.File;
 import java.io.FileOutputStream;
@@ -16,7 +18,9 @@ import java.util.Map;
 
 public class ExcelUtil {
 
-	public static final String OFFICE_EXCEL_2003_POSTFIX = "xls";
+    private static final Logger log = LoggerFactory.getLogger(ExcelUtil.class);
+
+    public static final String OFFICE_EXCEL_2003_POSTFIX = "xls";
 
 	public static final String OFFICE_EXCEL_2010_POSTFIX = "xlsx";
 
@@ -293,12 +297,12 @@ public class ExcelUtil {
             fos = new FileOutputStream(excelName + ".xls");
             workBook.write(fos);
         } catch (IOException e) {
-            LogUtil.info("Excel导出工具出错" + e.getMessage());
+            log.info("Excel导出工具出错" + e.getMessage());
         } finally {
             try {
                 fos.close();
             } catch (IOException e) {
-                LogUtil.info("关闭输出流出错" + e.getMessage());
+                log.info("关闭输出流出错" + e.getMessage());
             }
         }
     }

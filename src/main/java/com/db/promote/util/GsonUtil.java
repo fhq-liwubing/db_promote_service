@@ -1,4 +1,4 @@
-package com.db.promote.utils;
+package com.db.promote.util;
 
 import com.google.gson.FieldNamingPolicy;
 import com.google.gson.Gson;

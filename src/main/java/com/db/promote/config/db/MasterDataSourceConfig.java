@@ -1,4 +1,4 @@
-package com.db.promote.db.conf;
+package com.db.promote.config.db;
 
 import com.alibaba.druid.pool.DruidDataSource;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -22,8 +22,8 @@ import javax.sql.DataSource;
 @MapperScan(basePackages = MasterDataSourceConfig.PACKAGE, sqlSessionFactoryRef = "masterSqlSessionFactory")
 public class MasterDataSourceConfig {
     // 精确到 master 目录，以便跟其他数据源隔离
-    static final String PACKAGE = "com.db.promote.db.master";
-    static final String MAPPER_LOCATION = "classpath:mapper/master/*.xml";
+    static final String PACKAGE = "com.db.promote.dao";
+    static final String MAPPER_LOCATION = "classpath:mapper/*.xml";
 
     private String driverClassName;
     private String url;

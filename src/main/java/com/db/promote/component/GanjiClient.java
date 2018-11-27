@@ -2,7 +2,7 @@ package com.db.promote.component;
 
 import com.db.promote.entity.Commpay;
 import com.db.promote.service.CommpayService;
-import com.db.promote.utils.ExcelUtil;
+import com.db.promote.util.ExcelUtil;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;

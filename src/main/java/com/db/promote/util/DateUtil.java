@@ -1,4 +1,4 @@
-package com.db.promote.utils;
+package com.db.promote.util;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.lang3.tuple.Pair;
