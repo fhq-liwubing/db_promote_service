@@ -1,0 +1,23 @@
+spring:
+  profiles:
+    active: dev
+  application:
+    name: db_promote_service
+  thymeleaf:
+    prefix: classpath:/templates
+    suffix: .html
+    cache: false
+    encoding: UTF-8
+    mode: HTML5
+
+server:
+  port: 16110
+  tomcat:
+    accesslog:
+      enabled: true
+    basedir: target/tomcat
+
+logging:
+  level:
+    com.db.promote: INFO
+
