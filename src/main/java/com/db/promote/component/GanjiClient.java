@@ -28,7 +28,7 @@ public class GanjiClient {
     private static final Logger log = LoggerFactory.getLogger(GanjiClient.class);
 
     public static void main(String[] args) throws IOException {
-//        List<Commpay> commpayList = new ArrayList<>();
+//        List<Company> commpayList = new ArrayList<>();
 //
 //        String path = "C:\\Users\\lib\\Desktop\\数据导出\\ganji郑州\\郑州\\专项审批.xls";
 //        String filepath = "C:\\Users\\lib\\Desktop\\数据导出\\ganji郑州";
@@ -218,7 +218,7 @@ public class GanjiClient {
                 "公司名称", "联系人", "手机号", "地址", "公司简介"
         };
         String keys[] = {
-                "compayName", "accName", "phone", "addr", "business","mail"
+                "companyName", "accName", "phone", "addr", "business","mail"
         };
         Date d = new Date();
         String fileNames = d.getTime() + ".xls";

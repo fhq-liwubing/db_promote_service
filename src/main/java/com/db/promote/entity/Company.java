@@ -9,11 +9,11 @@ import java.util.Date;
  * Created by lib on 2018/11/18.
  */
 @Data
-public class Commpay {
+public class Company {
 
     private Integer id;
 
-    private String compayName;
+    private String companyName;
 
     private String phone;
 

@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.db.promote.dao.CommpayDao">
     <!--auto generated Code-->
-    <resultMap id="AllColumnMap" type="com.db.promote.entity.Commpay">
+    <resultMap id="AllColumnMap" type="com.db.promote.entity.Company">
         <result column="f_id" property="id"/>
-        <result column="f_compay_name" property="compayName"/>
+        <result column="f_company_name" property="companyName"/>
         <result column="f_phone" property="phone"/>
         <result column="f_addr" property="addr"/>
         <result column="f_business" property="business"/>
@@ -16,7 +16,7 @@
     <!--auto generated Code-->
     <sql id="all_column">
         `f_id`,
-        `f_compay_name`,
+        `f_company_name`,
         `f_phone`,
         `f_addr`,
         `f_business`,
@@ -29,7 +29,7 @@
     <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.id">
         INSERT INTO t_commpay (
             `f_id`,
-            `f_compay_name`,
+            `f_company_name`,
             `f_phone`,
             `f_addr`,
             `f_business`,
@@ -40,7 +40,7 @@
             `f_create_time`
         ) VALUES (
             #{pojo.id},
-            #{pojo.compayName},
+            #{pojo.companyName},
             #{pojo.phone},
             #{pojo.addr},
             #{pojo.business},
@@ -57,7 +57,7 @@
         INSERT INTO t_commpay
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="pojo.id!=null"> `f_id`,</if>
-            <if test="pojo.compayName!=null"> `f_compay_name`,</if>
+            <if test="pojo.companyName!=null"> `f_company_name`,</if>
             <if test="pojo.phone!=null"> `f_phone`,</if>
             <if test="pojo.addr!=null"> `f_addr`,</if>
             <if test="pojo.business!=null"> `f_business`,</if>
@@ -67,7 +67,7 @@
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="pojo.id!=null">#{pojo.id},</if>
-            <if test="pojo.compayName!=null">#{pojo.compayName},</if>
+            <if test="pojo.companyName!=null">#{pojo.companyName},</if>
             <if test="pojo.phone!=null">#{pojo.phone},</if>
             <if test="pojo.addr!=null">#{pojo.addr},</if>
             <if test="pojo.business!=null">#{pojo.business},</if>
@@ -84,7 +84,7 @@
         <foreach collection="pojos" item="pojo" index="index" separator=",">
             (
             #{pojo.id},
-            #{pojo.compayName},
+            #{pojo.companyName},
             #{pojo.phone},
             #{pojo.addr},
             #{pojo.business},
@@ -99,7 +99,7 @@
         UPDATE t_commpay
         <set>
             <if test="pojo.id != null"> `f_id` = #{pojo.id}, </if>
-            <if test="pojo.compayName != null"> `f_compay_name` = #{pojo.compayName}, </if>
+            <if test="pojo.companyName != null"> `f_company_name` = #{pojo.companyName}, </if>
             <if test="pojo.phone != null"> `f_phone` = #{pojo.phone}, </if>
             <if test="pojo.addr != null"> `f_addr` = #{pojo.addr}, </if>
             <if test="pojo.business != null"> `f_business` = #{pojo.business}, </if>
