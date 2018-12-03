@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.db.promote.dao.CompanyOriginDao">
     <!--auto generated Code-->
     <resultMap id="AllColumnMap" type="com.db.promote.entity.CompanyOrigin">
@@ -68,17 +69,17 @@
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
         INSERT INTO t_company_origin
         <trim prefix="(" suffix=")" suffixOverrides=",">
-            <if test="pojo.id!=null"> `f_id`,</if>
-            <if test="pojo.compayName!=null"> `f_compay_name`,</if>
-            <if test="pojo.phone!=null"> `f_phone`,</if>
-            <if test="pojo.addr!=null"> `f_addr`,</if>
-            <if test="pojo.business!=null"> `f_business`,</if>
-            <if test="pojo.accName!=null"> `f_acc_name`,</if>
-            <if test="pojo.sourceType!=null"> `f_source_type`,</if>
-            <if test="pojo.provinces!=null"> `f_provinces`,</if>
-            <if test="pojo.city!=null"> `f_city`,</if>
-            <if test="pojo.createTime!=null"> `f_create_time`,</if>
-            <if test="pojo.updateTime!=null"> `f_update_time`,</if>
+            <if test="pojo.id!=null">`f_id`,</if>
+            <if test="pojo.compayName!=null">`f_compay_name`,</if>
+            <if test="pojo.phone!=null">`f_phone`,</if>
+            <if test="pojo.addr!=null">`f_addr`,</if>
+            <if test="pojo.business!=null">`f_business`,</if>
+            <if test="pojo.accName!=null">`f_acc_name`,</if>
+            <if test="pojo.sourceType!=null">`f_source_type`,</if>
+            <if test="pojo.provinces!=null">`f_provinces`,</if>
+            <if test="pojo.city!=null">`f_city`,</if>
+            <if test="pojo.createTime!=null">`f_create_time`,</if>
+            <if test="pojo.updateTime!=null">`f_update_time`,</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -122,17 +123,17 @@
     <update id="update">
         UPDATE t_company_origin
         <set>
-            <if test="pojo.id != null"> `f_id` = #{pojo.id}, </if>
-            <if test="pojo.compayName != null"> `f_compay_name` = #{pojo.compayName}, </if>
-            <if test="pojo.phone != null"> `f_phone` = #{pojo.phone}, </if>
-            <if test="pojo.addr != null"> `f_addr` = #{pojo.addr}, </if>
-            <if test="pojo.business != null"> `f_business` = #{pojo.business}, </if>
-            <if test="pojo.accName != null"> `f_acc_name` = #{pojo.accName}, </if>
-            <if test="pojo.sourceType != null"> `f_source_type` = #{pojo.sourceType}, </if>
-            <if test="pojo.provinces != null"> `f_provinces` = #{pojo.provinces}, </if>
-            <if test="pojo.city != null"> `f_city` = #{pojo.city}, </if>
-            <if test="pojo.createTime != null"> `f_create_time` = #{pojo.createTime}, </if>
-            <if test="pojo.updateTime != null"> `f_update_time` = #{pojo.updateTime} </if>
+            <if test="pojo.id != null">`f_id` = #{pojo.id},</if>
+            <if test="pojo.compayName != null">`f_compay_name` = #{pojo.compayName},</if>
+            <if test="pojo.phone != null">`f_phone` = #{pojo.phone},</if>
+            <if test="pojo.addr != null">`f_addr` = #{pojo.addr},</if>
+            <if test="pojo.business != null">`f_business` = #{pojo.business},</if>
+            <if test="pojo.accName != null">`f_acc_name` = #{pojo.accName},</if>
+            <if test="pojo.sourceType != null">`f_source_type` = #{pojo.sourceType},</if>
+            <if test="pojo.provinces != null">`f_provinces` = #{pojo.provinces},</if>
+            <if test="pojo.city != null">`f_city` = #{pojo.city},</if>
+            <if test="pojo.createTime != null">`f_create_time` = #{pojo.createTime},</if>
+            <if test="pojo.updateTime != null">`f_update_time` = #{pojo.updateTime}</if>
         </set>
         WHERE f_id = #{pojo.id}
     </update>
@@ -142,21 +143,33 @@
         <include refid="all_column"/>
         FROM t_company_origin
         <where>
-          <if test="pojo.provinces != null">
-              and `f_provinces` = #{pojo.provinces}
-          </if>
-          <if test="pojo.city != null">
-              and `f_city` = #{pojo.city}
-          </if>
+            <if test="provinces != null and provinces !=''">
+                and `f_provinces` = #{provinces}
+            </if>
+            <if test="city != null and city !=''">
+                and `f_city` = #{city}
+            </if>
+            <if test="business != null and business !=''">
+                and `f_business` like CONCAT('%',#{business},'%')
+            </if>
         </where>
         LIMIT #{offSet}, #{pageRow}
     </select>
 
-
-
     <select id="countCompanyOrigin" resultType="Integer">
         SELECT count(0)
         FROM t_company_origin
+        <where>
+            <if test="provinces != null and provinces !=''">
+                and `f_provinces` = #{provinces}
+            </if>
+            <if test="city != null and city !=''">
+                and `f_city` = #{city}
+            </if>
+            <if test="business != null and business !=''">
+                and `f_business` like CONCAT('%',#{business},'%')
+            </if>
+        </where>
     </select>
 </mapper>
 
