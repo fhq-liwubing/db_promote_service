@@ -1,7 +1,7 @@
 package com.db.promote.test;
 
 import com.db.promote.component.GanjiClient;
-import com.db.promote.entity.Commpay;
+import com.db.promote.entity.CompanyOrigin;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.slf4j.Logger;
@@ -32,7 +32,7 @@ public class GanJiTest {
 
     @Test
     public void ganjiClient() throws IOException {
-        List<Commpay> commpayList = new ArrayList<>();
+        List<CompanyOrigin> commpayList = new ArrayList<>();
 
         String filepath = "E:\\项目\\zj\\ganji工商代理行业数据收集\\工商代理行业数据收集";
         File file = new File(filepath);

@@ -2,7 +2,7 @@ package com.db.promote.test;
 
 import com.db.promote.component.GanjiClient;
 import com.db.promote.component.TianYanChaClient;
-import com.db.promote.entity.Commpay;
+import com.db.promote.entity.CompanyOrigin;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -37,7 +37,7 @@ public class TianYanChaTest {
 
     @Test
     public void tianYanChaClient() throws IOException, InvalidFormatException {
-        List<Commpay> commpayList = new ArrayList<>();
+        List<CompanyOrigin> commpayList = new ArrayList<>();
 
         String filepath = "E:\\项目\\zj\\天眼查数据\\给客户版";
         File file = new File(filepath);

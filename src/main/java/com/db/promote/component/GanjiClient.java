@@ -1,7 +1,8 @@
 package com.db.promote.component;
 
-import com.db.promote.entity.Commpay;
-import com.db.promote.service.CommpayService;
+import com.db.promote.common.SourceTypeEnum;
+import com.db.promote.entity.CompanyOrigin;
+import com.db.promote.service.CompanyOriginService;
 import com.db.promote.util.ExcelUtil;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
@@ -22,7 +23,7 @@ import java.util.*;
 public class GanjiClient {
 
     @Autowired
-    private CommpayService commpayService;
+    private CompanyOriginService companyOriginService;
 
     private static final Logger log = LoggerFactory.getLogger(GanjiClient.class);
 
@@ -67,7 +68,7 @@ public class GanjiClient {
      * @return
      * @throws IOException
      */
-    public  List<Commpay> createExcel(String path, List<Commpay> commpayList) throws IOException {
+    public  List<CompanyOrigin> createExcel(String path, List<CompanyOrigin> commpayList) throws IOException {
         log.info("赶集Excel导入");
         InputStream is = new FileInputStream(path);
         HSSFWorkbook hssfWorkbook = new HSSFWorkbook(is);
@@ -83,42 +84,21 @@ public class GanjiClient {
             for (int rowNum = 1; rowNum <= hssfSheet.getLastRowNum(); rowNum++) {
                 HSSFRow hssfRow = hssfSheet.getRow(rowNum);
                 if (hssfRow != null) {
-                    Commpay commpay = new Commpay();
+                    CompanyOrigin companyOrigin = new CompanyOrigin();
                     HSSFCell business = hssfRow.getCell(1);
                     HSSFCell compayName = hssfRow.getCell(2);
                     HSSFCell accName = hssfRow.getCell(3);
                     HSSFCell addr = hssfRow.getCell(4);
                     HSSFCell phone = hssfRow.getCell(5);
-                    if(clearData(ExcelUtil.getValue(business))&&
-                            clearBisiness(ExcelUtil.getValue(business))){
-                        commpay.setBusiness(ExcelUtil.getValue(business));
-                    }else {
-                        continue;
-                    }
-                    if(clearData(ExcelUtil.getValue(compayName))){
-                        commpay.setCompayName(ExcelUtil.getValue(compayName));
-                    }else {
-                        continue;
-                    }
-                    if(clearData(ExcelUtil.getValue(accName))){
-                        commpay.setAccName(ExcelUtil.getValue(accName));
-                    }else {
-                        continue;
-                    }
-                    if(clearData(ExcelUtil.getValue(addr))){
-                        commpay.setAddr(ExcelUtil.getValue(addr));
-                    }else {
-                        continue;
-                    }
-                    if(clearPhone(ExcelUtil.getValue(phone))){
-                        commpay.setPhone(ExcelUtil.getValue(phone));
-                    }else {
-                        continue;
-                    }
-                    commpay.setType("赶集");
+                        companyOrigin.setBusiness(ExcelUtil.getValue(business));
+                        companyOrigin.setCompayName(ExcelUtil.getValue(compayName));
+                        companyOrigin.setAccName(ExcelUtil.getValue(accName));
+                        companyOrigin.setAddr(ExcelUtil.getValue(addr));
+                        companyOrigin.setPhone(ExcelUtil.getValue(phone));
+                    companyOrigin.setSourceType(SourceTypeEnum.GANJI);
                    // commpayList.add(commpay);
                     //这里保存数据库
-                    commpayService.insert(commpay);
+                    companyOriginService.insert(companyOrigin);
                 }
             }
         }
@@ -194,14 +174,14 @@ public class GanjiClient {
      * @param pojoList
      * @return
      */
-    private static List<Map<String, Object>> createExcelRecord(List<Commpay> pojoList) {
+    private static List<Map<String, Object>> createExcelRecord(List<CompanyOrigin> pojoList) {
 
 
         List<Map<String, Object>> payMap = new ArrayList<Map<String, Object>>();
         Map<String, Object> map = new HashMap<String, Object>();
         map.put("sheetName", "数据导出");
         payMap.add(map);
-        Commpay pojo = null;
+        CompanyOrigin pojo = null;
         for (int j = 0; j < pojoList.size(); j++) {
             pojo = pojoList.get(j);
             Map<String, Object> payMapValue = new HashMap<String, Object>();
@@ -210,6 +190,7 @@ public class GanjiClient {
             payMapValue.put("addr", pojo.getAddr());
             payMapValue.put("business", pojo.getBusiness());
             payMapValue.put("accName", pojo.getAccName());
+            payMapValue.put("mail", pojo.getMail());
             payMap.add(payMapValue);
         }
 
@@ -217,7 +198,7 @@ public class GanjiClient {
         return payMap;
     }
 
-    public static void excelData(List<Commpay> commpayList,String exportPath,String fileName)
+    public static void excelData(List<CompanyOrigin> commpayList,String exportPath,String fileName)
             throws IOException {
 
         //手机号去重
@@ -237,7 +218,7 @@ public class GanjiClient {
                 "公司名称", "联系人", "手机号", "地址", "公司简介"
         };
         String keys[] = {
-                "compayName", "accName", "phone", "addr", "business"
+                "compayName", "accName", "phone", "addr", "business","mail"
         };
         Date d = new Date();
         String fileNames = d.getTime() + ".xls";

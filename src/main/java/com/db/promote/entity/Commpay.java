@@ -1,5 +1,6 @@
 package com.db.promote.entity;
 
+import com.db.promote.common.SourceTypeEnum;
 import lombok.Data;
 
 import java.util.Date;
@@ -24,7 +25,7 @@ public class Commpay {
 
     private Date createTime;
 
-    private String type; //来源
+    private SourceTypeEnum sourceType; //来源
 
     private String provinces; //省份
 

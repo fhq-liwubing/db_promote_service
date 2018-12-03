@@ -2,7 +2,7 @@ package com.db.promote.test;
 
 import com.db.promote.component.GanjiClient;
 import com.db.promote.component.QiXinBaoClient;
-import com.db.promote.entity.Commpay;
+import com.db.promote.entity.CompanyOrigin;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -32,7 +32,7 @@ public class QiXinBaoTest {
 
     @Test
     public void qiXinBaoClient() throws IOException, InvalidFormatException {
-        List<Commpay> commpayList = new ArrayList<>();
+        List<CompanyOrigin> commpayList = new ArrayList<>();
 
         String filepath = "E:\\项目\\zj\\启信宝数据\\启信宝数据";
         File file = new File(filepath);

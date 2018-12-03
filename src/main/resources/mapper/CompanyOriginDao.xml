@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.db.promote.dao.CommpayDao">
+<mapper namespace="com.db.promote.dao.CompanyOriginDao">
     <!--auto generated Code-->
-    <resultMap id="AllColumnMap" type="com.db.promote.entity.Commpay">
+    <resultMap id="AllColumnMap" type="com.db.promote.entity.CompanyOrigin">
         <result column="f_id" property="id"/>
         <result column="f_compay_name" property="compayName"/>
         <result column="f_phone" property="phone"/>
@@ -10,7 +10,11 @@
         <result column="f_business" property="business"/>
         <result column="f_acc_name" property="accName"/>
         <result column="f_source_type" property="sourceType"/>
+        <result column="f_provinces" property="provinces"/>
+        <result column="f_city" property="city"/>
+        <result column="f_mail" property="mail"/>
         <result column="f_create_time" property="createTime"/>
+        <result column="f_update_time" property="updateTime"/>
     </resultMap>
 
     <!--auto generated Code-->
@@ -22,12 +26,16 @@
         `f_business`,
         `f_acc_name`,
         `f_source_type`,
-        `f_create_time`
+        `f_provinces`,
+        `f_city`,
+        `f_mail`,
+        `f_create_time`,
+        `f_update_time`
     </sql>
 
     <!--auto generated Code-->
     <insert id="insert" useGeneratedKeys="true" keyProperty="pojo.id">
-        INSERT INTO t_commpay (
+        INSERT INTO t_company_origin (
             `f_id`,
             `f_compay_name`,
             `f_phone`,
@@ -37,7 +45,9 @@
             `f_source_type`,
             `f_provinces`,
             `f_city`,
-            `f_create_time`
+            `f_mail`,
+            `f_create_time`,
+            `f_update_time`
         ) VALUES (
             #{pojo.id},
             #{pojo.compayName},
@@ -48,13 +58,15 @@
             #{pojo.sourceType},
             #{pojo.provinces},
             #{pojo.city},
-            #{pojo.createTime}
+            #{pojo.mail},
+            #{pojo.createTime},
+            #{pojo.updateTime}
         )
     </insert>
 
     <!--auto generated Code-->
     <insert id="insertSelective" useGeneratedKeys="true" keyProperty="pojo.id">
-        INSERT INTO t_commpay
+        INSERT INTO t_company_origin
         <trim prefix="(" suffix=")" suffixOverrides=",">
             <if test="pojo.id!=null"> `f_id`,</if>
             <if test="pojo.compayName!=null"> `f_compay_name`,</if>
@@ -62,7 +74,11 @@
             <if test="pojo.addr!=null"> `f_addr`,</if>
             <if test="pojo.business!=null"> `f_business`,</if>
             <if test="pojo.accName!=null"> `f_acc_name`,</if>
-            <if test="pojo.createTime!=null"> `create_time`,</if>
+            <if test="pojo.sourceType!=null"> `f_source_type`,</if>
+            <if test="pojo.provinces!=null"> `f_provinces`,</if>
+            <if test="pojo.city!=null"> `f_city`,</if>
+            <if test="pojo.createTime!=null"> `f_create_time`,</if>
+            <if test="pojo.updateTime!=null"> `f_update_time`,</if>
         </trim>
         VALUES
         <trim prefix="(" suffix=")" suffixOverrides=",">
@@ -72,13 +88,17 @@
             <if test="pojo.addr!=null">#{pojo.addr},</if>
             <if test="pojo.business!=null">#{pojo.business},</if>
             <if test="pojo.accName!=null">#{pojo.accName},</if>
+            <if test="pojo.sourceType!=null">#{pojo.sourceType},</if>
+            <if test="pojo.provinces!=null">#{pojo.provinces},</if>
+            <if test="pojo.city!=null">#{pojo.city},</if>
             <if test="pojo.createTime!=null">#{pojo.createTime},</if>
+            <if test="pojo.updateTime!=null">#{pojo.updateTime},</if>
         </trim>
     </insert>
 
     <!--auto generated Code-->
     <insert id="insertList">
-        INSERT INTO t_commpay (
+        INSERT INTO t_company_origin (
         <include refid="all_column"/>
         )VALUES
         <foreach collection="pojos" item="pojo" index="index" separator=",">
@@ -89,14 +109,18 @@
             #{pojo.addr},
             #{pojo.business},
             #{pojo.accName},
-            #{pojo.createTime}
+            #{pojo.sourceType},
+            #{pojo.provinces},
+            #{pojo.city},
+            #{pojo.createTime},
+            #{pojo.updateTime}
             )
         </foreach>
     </insert>
 
     <!--auto generated Code-->
     <update id="update">
-        UPDATE t_commpay
+        UPDATE t_company_origin
         <set>
             <if test="pojo.id != null"> `f_id` = #{pojo.id}, </if>
             <if test="pojo.compayName != null"> `f_compay_name` = #{pojo.compayName}, </if>
@@ -104,7 +128,11 @@
             <if test="pojo.addr != null"> `f_addr` = #{pojo.addr}, </if>
             <if test="pojo.business != null"> `f_business` = #{pojo.business}, </if>
             <if test="pojo.accName != null"> `f_acc_name` = #{pojo.accName}, </if>
-            <if test="pojo.createTime != null"> `f_create_time` = #{pojo.createTime} </if>
+            <if test="pojo.sourceType != null"> `f_source_type` = #{pojo.sourceType}, </if>
+            <if test="pojo.provinces != null"> `f_provinces` = #{pojo.provinces}, </if>
+            <if test="pojo.city != null"> `f_city` = #{pojo.city}, </if>
+            <if test="pojo.createTime != null"> `f_create_time` = #{pojo.createTime}, </if>
+            <if test="pojo.updateTime != null"> `f_update_time` = #{pojo.updateTime} </if>
         </set>
         WHERE f_id = #{pojo.id}
     </update>
