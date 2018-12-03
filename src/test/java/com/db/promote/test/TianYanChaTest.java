@@ -27,7 +27,7 @@ public class TianYanChaTest {
     private static final Logger log = LoggerFactory.getLogger(TianYanChaTest.class);
 
 //    @Autowired
-//    private CommpayDao commpayDao;
+//    private CompanyDao commpayDao;
 
     @Autowired
     private TianYanChaClient tianYanChaClient;

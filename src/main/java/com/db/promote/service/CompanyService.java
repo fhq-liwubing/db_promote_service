@@ -1,6 +1,6 @@
 package com.db.promote.service;
 
-import com.db.promote.dao.CommpayDao;
+import com.db.promote.dao.CompanyDao;
 import com.db.promote.entity.Company;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -13,17 +13,17 @@ import java.util.Date;
  * Created by lib on 2018/11/20.
  */
 @Service
-public class CommpayService {
+public class CompanyService {
 
-    private static final Logger log = LoggerFactory.getLogger(CommpayService.class);
+    private static final Logger log = LoggerFactory.getLogger(CompanyService.class);
 
     @Autowired
-    private CommpayDao commpayDao;
+    private CompanyDao companyDao;
 
     public void insert(Company company){
         try{
             company.setCreateTime(new Date());
-            commpayDao.insert(company);
+            companyDao.insert(company);
             log.info("保存数据库成功...");
         }catch (Exception ex){
             log.info("保存数据库出现异常：{}",ex.getMessage());

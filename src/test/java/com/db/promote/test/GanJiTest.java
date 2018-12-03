@@ -25,7 +25,7 @@ public class GanJiTest {
     private static final Logger log = LoggerFactory.getLogger(GanJiTest.class);
 
 //    @Autowired
-//    private CommpayDao commpayDao;
+//    private CompanyDao commpayDao;
 
     @Autowired
     private GanjiClient excelClient;

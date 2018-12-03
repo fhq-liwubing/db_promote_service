@@ -7,7 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import java.util.List;
 
 @Mapper
-public interface CommpayDao {
+public interface CompanyDao {
     int insert(@Param("pojo") Company pojo);
 
     int insertSelective(@Param("pojo") Company pojo);
