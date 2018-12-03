@@ -17,7 +17,7 @@ public class Task {
 
     private String taskPackageNo;
 
-    private String staus;
+    private String status;
 
     private Integer progress;
 

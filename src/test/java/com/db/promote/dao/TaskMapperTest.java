@@ -28,7 +28,7 @@ public class TaskMapperTest {
         task.setProgress(1);
         task.setTag("sas");
         task.setTaskPackageNo("sadasd");
-        task.setStaus("1");
+        task.setStatus("1");
         task.setCreateTime(new Date());
         task.setUpdateTime(new Date());
         taskMapper.insert(task);
