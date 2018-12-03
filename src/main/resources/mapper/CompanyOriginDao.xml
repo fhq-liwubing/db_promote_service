@@ -141,6 +141,14 @@
         SELECT
         <include refid="all_column"/>
         FROM t_company_origin
+        <where>
+          <if test="pojo.provinces != null">
+              and `f_provinces` = #{pojo.provinces}
+          </if>
+          <if test="pojo.city != null">
+              and `f_city` = #{pojo.city}
+          </if>
+        </where>
         LIMIT #{offSet}, #{pageRow}
     </select>
 
