@@ -24,4 +24,12 @@ public interface CompanyOriginDao {
      * @return
      */
     List<JSONObject> listCompanyOrigin(JSONObject jsonObject);
+
+    /**
+     * 统计客户资料来源总数
+     *
+     * @param jsonObject
+     * @return
+     */
+    int countCompanyOrigin(JSONObject jsonObject);
 }
