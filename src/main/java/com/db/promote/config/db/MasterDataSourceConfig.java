@@ -1,7 +1,9 @@
 package com.db.promote.config.db;
 
 import com.alibaba.druid.pool.DruidDataSource;
+import com.github.pagehelper.PageInterceptor;
 import lombok.Data;
+import org.apache.ibatis.plugin.Interceptor;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.annotation.MapperScan;
@@ -14,6 +16,7 @@ import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 
 import javax.sql.DataSource;
+import java.util.Properties;
 
 /**
  * Created by smq on 2017/4/22.
@@ -90,7 +93,15 @@ public class MasterDataSourceConfig {
         sessionFactory.setDataSource(ds);
         sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver()
                 .getResources(MasterDataSourceConfig.MAPPER_LOCATION));
-        //plugins插件，添加updateTime修改时间字段
+
+        Interceptor[] interceptors = new Interceptor[1];
+        PageInterceptor pageInterceptor = new PageInterceptor();
+        Properties properties = new Properties();
+        properties.setProperty("PageRowBounds", "true");
+        pageInterceptor.setProperties(properties);
+        interceptors[0] = pageInterceptor;
+
+        sessionFactory.setPlugins(interceptors);
         return sessionFactory.getObject();
     }
 
