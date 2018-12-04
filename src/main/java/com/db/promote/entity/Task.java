@@ -4,11 +4,10 @@ import java.util.Date;
 import lombok.Data;
 
 /**
-* Created by Mybatis Generator 2018/12/02
+* Created by Mybatis Generator 2018/12/04
 */
 @Data
 public class Task {
-
     private Integer id;
 
     private String taskNo;
