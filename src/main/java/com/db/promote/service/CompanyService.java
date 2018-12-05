@@ -1,32 +1,16 @@
 package com.db.promote.service;
 
-import com.db.promote.dao.CompanyDao;
 import com.db.promote.entity.Company;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.Date;
+import com.github.pagehelper.PageInfo;
 
 /**
- * Created by lib on 2018/11/20.
+ * @author kun
+ * @version 2018-12-05 22:03
  */
-@Service
-public class CompanyService {
+public interface CompanyService {
 
-    private static final Logger log = LoggerFactory.getLogger(CompanyService.class);
+    PageInfo<Company> queryByExample(Company company, Integer pageNum, Integer pageRow);
 
-    @Autowired
-    private CompanyDao companyDao;
+    void saveData(Company company);
 
-    public void insert(Company company){
-        try{
-            company.setCreateTime(new Date());
-            companyDao.insert(company);
-            log.info("保存数据库成功...");
-        }catch (Exception ex){
-            log.info("保存数据库出现异常：{}",ex.getMessage());
-        }
-    }
 }

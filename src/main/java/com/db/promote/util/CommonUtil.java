@@ -1,5 +1,6 @@
 package com.db.promote.util;
 
+import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
 import com.db.promote.config.exception.CommonJsonException;
 import com.db.promote.util.constants.Constants;
@@ -69,6 +70,14 @@ public class CommonUtil {
         returnData.put("totalCount", totalCount);
         returnData.put("totalPage", totalPage);
         result.put("returnData", returnData);
+        return result;
+    }
+
+    public static JSONObject successPage(List resultList, int totalPage, long totalCount) {
+        JSONObject result = successJson();
+        result.put("list", new JSONArray(resultList));
+        result.put("totalPage", totalPage);
+        result.put("totalCount", totalCount);
         return result;
     }
 
