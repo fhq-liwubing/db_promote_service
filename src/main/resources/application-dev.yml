@@ -1,6 +1,6 @@
 logging:
   level:
-    com.db.promote: INFO
+    com.db.promote: DEBUG
 
 spring:
   datasource:
