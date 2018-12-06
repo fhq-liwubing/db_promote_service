@@ -77,18 +77,22 @@ public class CommonUtil {
 
     public static JSONObject successPage(List resultList, int totalPage, long totalCount) {
         JSONObject result = successJson();
-        result.put("list", new JSONArray(resultList));
-        result.put("totalPage", totalPage);
-        result.put("totalCount", totalCount);
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("list", new JSONArray(resultList));
+        jsonObject.put("totalPage", totalPage);
+        jsonObject.put("totalCount", totalCount);
+        result.put("returnData", jsonObject);
         return result;
     }
 
-    public static <T> JSONObject successPage(PageInfo pageInfo) {
-        JSONObject jsonObject = successJson();
+    public static JSONObject successPage(PageInfo pageInfo) {
+        JSONObject result = successJson();
+        JSONObject jsonObject = new JSONObject();
         jsonObject.put("list", new JSONArray(pageInfo.getList()));
         jsonObject.put("totalPage", pageInfo.getPages());
         jsonObject.put("totalCount", pageInfo.getTotal());
-        return jsonObject;
+        result.put("returnData", jsonObject);
+        return result;
     }
 
     /**
