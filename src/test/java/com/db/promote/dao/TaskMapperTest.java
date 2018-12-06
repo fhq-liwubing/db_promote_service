@@ -24,9 +24,8 @@ public class TaskMapperTest {
     public void testInsert() {
         Task task = new Task();
         task.setCompanyNo("asd");
-        task.setCompleteTime("asd");
+        task.setCompleteTime(null);
         task.setProgress(1);
-        task.setTag("sas");
         task.setTaskPackageNo("sadasd");
         task.setStatus("1");
         task.setCreateTime(new Date());
