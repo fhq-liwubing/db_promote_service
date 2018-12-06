@@ -12,5 +12,5 @@ public interface TerminalService {
 
     PageInfo<Terminal> queryByExample(Terminal example, Integer pageNum, Integer pageRow);
 
-    PageInfo<TerminalVO> queryVOByExample(Terminal example, Integer pageNum, Integer pageRow);
+    PageInfo<TerminalVO> queryVOByExample(TerminalVO example, Integer pageNum, Integer pageRow);
 }

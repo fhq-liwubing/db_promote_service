@@ -28,7 +28,7 @@ public class TerminalController {
     public JSONObject listTerminal(HttpServletRequest request) {
         JSONObject jsonObject = CommonUtil.request2Json(request);
         PageInfo<TerminalVO> pageInfo = terminalService
-                .queryVOByExample(jsonObject.toJavaObject(Terminal.class), jsonObject.getInteger("pageNum"), jsonObject.getInteger("pageRow"));
+                .queryVOByExample(jsonObject.toJavaObject(TerminalVO.class), jsonObject.getInteger("pageNum"), jsonObject.getInteger("pageRow"));
         return CommonUtil.successPage(pageInfo);
     }
 

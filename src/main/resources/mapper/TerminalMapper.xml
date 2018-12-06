@@ -182,6 +182,26 @@
           t.id, t.terminal_no, t.username, t.password, t.employee_no, t.status, t.create_time, t.update_time,
           e.name as employee_name
         from t_terminal t inner join t_employee e on t.employee_no = e.employee_no
+        <where>
+            <if test="terminalNo != null and terminalNo != '' ">
+                and t.terminal_no = #{terminalNo}
+            </if>
+            <if test="username != null and username != '' ">
+                and t.`username` = #{username}
+            </if>
+            <if test="password != null and password != '' ">
+                and t.`password` = #{password}
+            </if>
+            <if test="employeeNo != null and employeeNo != '' ">
+                and t.employee_no = #{employeeNo}
+            </if>
+            <if test="status != null">
+                and t.`status` = #{status}
+            </if>
+            <if test="employeeName != null and employeeName != ''">
+                and e.name like CONCAT(name,'%')
+            </if>
+        </where>
     </select>
 
 </mapper>

@@ -23,5 +23,5 @@ public interface TerminalMapper {
 
     List<Terminal> selectByExample(Terminal example);
 
-    List<TerminalVO> selectVOByExample(Terminal example);
+    List<TerminalVO> selectVOByExample(TerminalVO example);
 }

@@ -26,7 +26,7 @@ public class TerminalServiceImpl implements TerminalService {
     }
 
     @Override
-    public PageInfo<TerminalVO> queryVOByExample(Terminal example, Integer pageNum, Integer pageRow) {
+    public PageInfo<TerminalVO> queryVOByExample(TerminalVO example, Integer pageNum, Integer pageRow) {
         return PageHelper.startPage(pageNum, pageRow).doSelectPageInfo(() -> terminalMapper.selectVOByExample(example));
     }
 
