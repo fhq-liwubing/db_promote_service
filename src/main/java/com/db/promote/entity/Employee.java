@@ -14,9 +14,17 @@ public class Employee {
 
     private String name;
 
+    private String sex;
+
+    private String phoneNo;
+
     private String email;
 
-    private Date createTime;
+    private String province;
 
-    private Date updateTime;
+    private String city;
+
+    private Integer status;
+
+    private Date createTime;
 }
