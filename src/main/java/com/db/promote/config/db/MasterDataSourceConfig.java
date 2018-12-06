@@ -32,14 +32,6 @@ public class MasterDataSourceConfig {
         sessionFactory.setMapperLocations(new PathMatchingResourcePatternResolver()
                 .getResources(MasterDataSourceConfig.MAPPER_LOCATION));
 
-        Interceptor[] interceptors = new Interceptor[1];
-        PageInterceptor pageInterceptor = new PageInterceptor();
-        Properties properties = new Properties();
-        properties.setProperty("PageRowBounds", "true");
-        pageInterceptor.setProperties(properties);
-        interceptors[0] = pageInterceptor;
-
-        sessionFactory.setPlugins(interceptors);
         return sessionFactory.getObject();
     }
 
