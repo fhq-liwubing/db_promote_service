@@ -23,7 +23,7 @@ public class EmployeeController {
     @Autowired
     private EmployeeService employeeService;
 
-    @GetMapping("/listCompany")
+    @GetMapping("/listEmployee")
     public JSONObject listEmployee(HttpServletRequest request) {
         JSONObject jsonObject = CommonUtil.request2Json(request);
         Employee employee = jsonObject.toJavaObject(Employee.class);

@@ -3,6 +3,7 @@ package com.db.promote.component;
 import com.db.promote.common.SourceTypeEnum;
 import com.db.promote.entity.CompanyOrigin;
 import com.db.promote.service.CompanyOriginService;
+import com.db.promote.util.GsonUtil;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 import org.apache.poi.ss.usermodel.Cell;
@@ -78,6 +79,7 @@ public class TianYanChaClient {
                     Cell phone = hssfRow.getCell(10);
                     Cell provinces = hssfRow.getCell(5);//省份
                     Cell city = hssfRow.getCell(6);//城市
+                    Cell mail = hssfRow.getCell(14);
                     companyOrigin.setBusiness(business.toString());
                     companyOrigin.setCompayName(compayName.toString());
                     companyOrigin.setAccName(accName.toString());
@@ -86,10 +88,11 @@ public class TianYanChaClient {
                     companyOrigin.setSourceType(SourceTypeEnum.TIANYANCHA);
                     companyOrigin.setProvinces(provinces.toString());
                     companyOrigin.setCity(city.toString());
-//                    commpayList.add(commpay);
+                    companyOrigin.setMail(mail.toString());
+                   // commpayList.add(companyOrigin);
                     //这里保存数据库
                     companyOriginService.insert(companyOrigin);
-//                    log.info("导出数据：{}",GsonUtil.buildGson().toJson(commpay));
+                    log.info("导出数据：{}",GsonUtil.buildGson().toJson(companyOrigin));
                 }
             }
         }

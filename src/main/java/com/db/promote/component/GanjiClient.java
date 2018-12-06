@@ -185,7 +185,7 @@ public class GanjiClient {
         for (int j = 0; j < pojoList.size(); j++) {
             pojo = pojoList.get(j);
             Map<String, Object> payMapValue = new HashMap<String, Object>();
-            payMapValue.put("compayName", pojo.getCompayName());
+            payMapValue.put("companyName", pojo.getCompayName());
             payMapValue.put("phone", pojo.getPhone());
             payMapValue.put("addr", pojo.getAddr());
             payMapValue.put("business", pojo.getBusiness());

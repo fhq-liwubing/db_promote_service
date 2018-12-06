@@ -30,6 +30,7 @@ public class CompayOriginServiceImpl implements CompanyOriginService {
             input.setCreateTime(new Date());
             input.setUpdateTime(new Date());
             companyOriginDao.insert(input);
+            log.info("保存数据库成功");
         }catch (Exception e){
             log.info("保存数据库异常：{}",e.getMessage());
         }
