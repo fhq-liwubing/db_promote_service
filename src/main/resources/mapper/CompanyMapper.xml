@@ -193,35 +193,32 @@
         <if test="id != null">
           and f_id = #{id}
         </if>
-        <if test="companyName != null">
+        <if test="companyName != null and companyName != '' ">
           and f_company_name = #{companyName}
         </if>
-        <if test="phone != null">
+        <if test="phone != null and phone != '' ">
           and f_phone = #{phone}
         </if>
-        <if test="provinces != null">
+        <if test="provinces != null and provinces != '' ">
           and f_provinces = #{provinces}
         </if>
-        <if test="city != null">
+        <if test="city != null and city != '' ">
           and f_city = #{city}
         </if>
-        <if test="addr != null">
+        <if test="addr != null and addr != '' ">
           and f_addr = #{addr}
         </if>
-        <if test="accName != null">
+        <if test="accName != null and accName != '' ">
           and f_acc_name = #{accName}
         </if>
-        <if test="business != null">
+        <if test="business != null and business != '' ">
           and f_business = #{business}
         </if>
-        <if test="sourceType != null">
+        <if test="sourceType != null and sourceType != '' ">
           and f_source_type = #{sourceType}
         </if>
-        <if test="mail != null">
+        <if test="mail != null and mail != '' ">
           and f_mail = #{mail}
-        </if>
-        <if test="createTime != null">
-          and f_create_time = #{createTime}
         </if>
       </where>
   </select>

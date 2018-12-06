@@ -134,17 +134,11 @@
           <if test="id != null">
             and `id` = #{id}
           </if>
-          <if test="name != null">
+          <if test="name != null and name != '' ">
             and `name` = #{name}
           </if>
-          <if test="email != null">
+          <if test="email != null and email != '' ">
             and email = #{email}
-          </if>
-          <if test="createTime != null">
-            and create_time = #{createTime}
-          </if>
-          <if test="updateTime != null">
-            and update_time = #{updateTime}
           </if>
         </where>
     </select>

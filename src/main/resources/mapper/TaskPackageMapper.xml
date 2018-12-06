@@ -144,10 +144,10 @@
       select <include refid="Base_Column_List" />
       from t_task_package
       <where>
-        <if test="taskPackageNo != null">
+        <if test="taskPackageNo != null and taskPackageNo != '' ">
           and task_package_no = #{taskPackageNo}
         </if>
-        <if test="taskPackageName != null">
+        <if test="taskPackageName != null and taskPackageName != '' ">
           and task_package_name = #{taskPackageName}
         </if>
         <if test="status != null">

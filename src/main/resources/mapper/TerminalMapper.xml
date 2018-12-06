@@ -155,16 +155,16 @@
       select <include refid="Base_Column_List" />
       from t_terminal
       <where>
-        <if test="terminalNo != null">
+        <if test="terminalNo != null and terminalNo != '' ">
           and terminal_no = #{terminalNo}
         </if>
-        <if test="username != null">
+        <if test="username != null and username != '' ">
           and `username` = #{username}
         </if>
-        <if test="password != null">
+        <if test="password != null and password != '' ">
           and `password` = #{password}
         </if>
-        <if test="employeeNo != null">
+        <if test="employeeNo != null and employeeNo != '' ">
           and employee_no = #{employeeNo}
         </if>
         <if test="status != null">

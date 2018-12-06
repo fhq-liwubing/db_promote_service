@@ -169,22 +169,22 @@
         select <include refid="Base_Column_List"/>
         from t_file
         <where>
-            <if test="id != null">
+            <if test="id != null and id != '' ">
                 and `id` = #{id}
             </if>
-            <if test="fileNo != null">
+            <if test="fileNo != null and fileNo != '' ">
                 and `file_no` = #{fileNo}
             </if>
-            <if test="fileName != null">
+            <if test="fileName != null and fileName != '' ">
                 and file_name = #{fileName}
             </if>
-            <if test="filePath != null">
+            <if test="filePath != null and filePath != ''">
                 and file_path = #{filePath}
             </if>
-            <if test="terminalNo != null">
+            <if test="terminalNo != null and terminalNo != '' ">
                 and terminal_no = #{terminalNo}
             </if>
-            <if test="share != null">
+            <if test="share != null ">
                 and share = #{share}
             </if>
         </where>
