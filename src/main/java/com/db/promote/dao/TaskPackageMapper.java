@@ -1,11 +1,11 @@
 package com.db.promote.dao;
 
 import com.db.promote.entity.TaskPackage;
-import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Mapper;import java.util.List;
 
 /**
-* Created by Mybatis Generator 2018/12/02
-*/
+ * Created by Mybatis Generator 2018/12/06
+ */
 @Mapper
 public interface TaskPackageMapper {
     int deleteByPrimaryKey(Integer id);
@@ -18,7 +18,7 @@ public interface TaskPackageMapper {
 
     int updateByPrimaryKeySelective(TaskPackage record);
 
-    int updateByPrimaryKeyWithBLOBs(TaskPackage record);
-
     int updateByPrimaryKey(TaskPackage record);
+
+    List<TaskPackage> selectByExample(TaskPackage example);
 }

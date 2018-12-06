@@ -4,11 +4,13 @@ import java.util.Date;
 import lombok.Data;
 
 /**
-* Created by Mybatis Generator 2018/12/02
+* Created by Mybatis Generator 2018/12/06
 */
 @Data
 public class Terminal {
     private Integer id;
+
+    private String terminalNo;
 
     private String username;
 
@@ -21,6 +23,4 @@ public class Terminal {
     private Date createTime;
 
     private Date updateTime;
-
-    private byte[] terminalNo;
 }

@@ -83,6 +83,14 @@ public class CommonUtil {
         return result;
     }
 
+    public static <T> JSONObject successPage(PageInfo pageInfo) {
+        JSONObject jsonObject = successJson();
+        jsonObject.put("list", new JSONArray(pageInfo.getList()));
+        jsonObject.put("totalPage", pageInfo.getPages());
+        jsonObject.put("totalCount", pageInfo.getTotal());
+        return jsonObject;
+    }
+
     /**
      * 查询分页结果后的封装工具方法
      *

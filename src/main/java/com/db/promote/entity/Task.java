@@ -20,9 +20,9 @@ public class Task {
 
     private Integer progress;
 
-    private String tag;
+    private String mark;
 
-    private String completeTime;
+    private Date completeTime;
 
     private Date createTime;
 

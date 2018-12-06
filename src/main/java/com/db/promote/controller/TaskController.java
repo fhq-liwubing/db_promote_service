@@ -1,7 +1,10 @@
 package com.db.promote.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.db.promote.entity.Task;
 import com.db.promote.service.TaskService;
+import com.db.promote.util.CommonUtil;
+import com.github.pagehelper.PageInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,8 +25,10 @@ public class TaskController {
     private TaskService taskService;
 
     @GetMapping("/task/list")
-    public void getTaskList(@RequestBody JSONObject jsonObject) {
-
+    public JSONObject getTaskList(@RequestBody JSONObject jsonObject) {
+        PageInfo<Task> pageInfo = taskService
+                .getTaskList(jsonObject.toJavaObject(Task.class), jsonObject.getInteger("pageNum"), jsonObject.getInteger("pageRow"));
+        return CommonUtil.successPage(pageInfo.getList(), pageInfo.getPages(), pageInfo.getTotal());
     }
 
 
