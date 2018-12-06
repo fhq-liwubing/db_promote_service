@@ -7,9 +7,10 @@ import com.db.promote.util.CommonUtil;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author kun
@@ -23,7 +24,8 @@ public class EmployeeController {
     private EmployeeService employeeService;
 
     @GetMapping("/listCompany")
-    public JSONObject listEmployee(@RequestBody JSONObject jsonObject) {
+    public JSONObject listEmployee(HttpServletRequest request) {
+        JSONObject jsonObject = CommonUtil.request2Json(request);
         Employee employee = jsonObject.toJavaObject(Employee.class);
         PageInfo<Employee> pageInfo = employeeService.queryByExample(employee, jsonObject.getInteger("pageNum"), jsonObject.getInteger("pageRow"));
         return CommonUtil.successPage(pageInfo.getList(), pageInfo.getPages(), pageInfo.getTotal());

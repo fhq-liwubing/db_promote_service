@@ -7,9 +7,10 @@ import com.db.promote.util.CommonUtil;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author kun
@@ -23,7 +24,8 @@ public class FileController {
     private FileService fileService;
 
     @GetMapping("/listFile")
-    public JSONObject listFile(@RequestBody JSONObject jsonObject) {
+    public JSONObject listFile(HttpServletRequest request) {
+        JSONObject jsonObject = CommonUtil.request2Json(request);
         PageInfo<File> filePageInfo = fileService
                 .queryByExmaple(jsonObject.toJavaObject(File.class), jsonObject.getInteger("pageNum"), jsonObject.getInteger("pageRow"));
         return CommonUtil.successPage(filePageInfo.getList(), filePageInfo.getPages(), filePageInfo.getTotal());

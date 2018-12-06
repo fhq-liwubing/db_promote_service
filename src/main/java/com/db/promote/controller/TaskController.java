@@ -9,8 +9,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+
+import javax.servlet.http.HttpServletRequest;
 
 /**
  * @author kun
@@ -25,7 +26,8 @@ public class TaskController {
     private TaskService taskService;
 
     @GetMapping("/task/list")
-    public JSONObject getTaskList(@RequestBody JSONObject jsonObject) {
+    public JSONObject getTaskList(HttpServletRequest request) {
+        JSONObject jsonObject = CommonUtil.request2Json(request);
         PageInfo<Task> pageInfo = taskService
                 .getTaskList(jsonObject.toJavaObject(Task.class), jsonObject.getInteger("pageNum"), jsonObject.getInteger("pageRow"));
         return CommonUtil.successPage(pageInfo.getList(), pageInfo.getPages(), pageInfo.getTotal());
