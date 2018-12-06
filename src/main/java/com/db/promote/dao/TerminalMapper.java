@@ -1,6 +1,7 @@
 package com.db.promote.dao;
 
 import com.db.promote.entity.Terminal;
+import com.db.promote.vo.TerminalVO;
 import org.apache.ibatis.annotations.Mapper;import java.util.List;
 
 /**
@@ -21,4 +22,6 @@ public interface TerminalMapper {
     int updateByPrimaryKey(Terminal record);
 
     List<Terminal> selectByExample(Terminal example);
+
+    List<TerminalVO> selectVOByExample(Terminal example);
 }

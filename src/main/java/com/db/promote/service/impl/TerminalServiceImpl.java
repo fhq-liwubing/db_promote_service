@@ -1,8 +1,10 @@
 package com.db.promote.service.impl;
 
+import com.db.promote.dao.EmployeeMapper;
 import com.db.promote.dao.TerminalMapper;
 import com.db.promote.entity.Terminal;
 import com.db.promote.service.TerminalService;
+import com.db.promote.vo.TerminalVO;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,11 @@ public class TerminalServiceImpl implements TerminalService {
     @Override
     public PageInfo<Terminal> queryByExample(Terminal example, Integer pageNum, Integer pageRow) {
         return PageHelper.startPage(pageNum, pageRow).doSelectPageInfo(() -> terminalMapper.selectByExample(example));
+    }
+
+    @Override
+    public PageInfo<TerminalVO> queryVOByExample(Terminal example, Integer pageNum, Integer pageRow) {
+        return PageHelper.startPage(pageNum, pageRow).doSelectPageInfo(() -> terminalMapper.selectVOByExample(example));
     }
 
 

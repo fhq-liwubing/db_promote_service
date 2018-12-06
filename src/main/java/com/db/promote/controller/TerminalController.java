@@ -4,6 +4,7 @@ import com.alibaba.fastjson.JSONObject;
 import com.db.promote.entity.Terminal;
 import com.db.promote.service.TerminalService;
 import com.db.promote.util.CommonUtil;
+import com.db.promote.vo.TerminalVO;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -26,8 +27,8 @@ public class TerminalController {
     @GetMapping("/listTerminal")
     public JSONObject listTerminal(HttpServletRequest request) {
         JSONObject jsonObject = CommonUtil.request2Json(request);
-        PageInfo<Terminal> pageInfo = terminalService
-                .queryByExample(jsonObject.toJavaObject(Terminal.class), jsonObject.getInteger("pageNum"), jsonObject.getInteger("pageRow"));
+        PageInfo<TerminalVO> pageInfo = terminalService
+                .queryVOByExample(jsonObject.toJavaObject(Terminal.class), jsonObject.getInteger("pageNum"), jsonObject.getInteger("pageRow"));
         return CommonUtil.successPage(pageInfo);
     }
 

@@ -21,3 +21,6 @@ logging:
   level:
     com.db.promote: INFO
 
+mybatis:
+  configuration:
+    map-underscore-to-camel-case: true

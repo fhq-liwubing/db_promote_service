@@ -1,6 +1,7 @@
 package com.db.promote.service;
 
 import com.db.promote.entity.Terminal;
+import com.db.promote.vo.TerminalVO;
 import com.github.pagehelper.PageInfo;
 
 /**
@@ -10,4 +11,6 @@ import com.github.pagehelper.PageInfo;
 public interface TerminalService {
 
     PageInfo<Terminal> queryByExample(Terminal example, Integer pageNum, Integer pageRow);
+
+    PageInfo<TerminalVO> queryVOByExample(Terminal example, Integer pageNum, Integer pageRow);
 }
