@@ -4,7 +4,7 @@ import java.util.Date;
 import lombok.Data;
 
 /**
-* Created by Mybatis Generator 2018/12/04
+* Created by Mybatis Generator 2018/12/06
 */
 @Data
 public class Task {

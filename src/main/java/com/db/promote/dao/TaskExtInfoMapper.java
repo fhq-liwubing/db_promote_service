@@ -6,6 +6,7 @@ import com.db.promote.entity.TaskExtInfo;
 * Created by Mybatis Generator 2018/12/02
 */
 public interface TaskExtInfoMapper {
+
     int deleteByPrimaryKey(Integer id);
 
     int insert(TaskExtInfo record);

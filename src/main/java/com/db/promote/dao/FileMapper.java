@@ -3,6 +3,8 @@ package com.db.promote.dao;
 import com.db.promote.entity.File;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
 * Created by Mybatis Generator 2018/12/02
 */
@@ -20,4 +22,6 @@ public interface FileMapper {
     int updateByPrimaryKeySelective(File record);
 
     int updateByPrimaryKey(File record);
+
+    List<File> selectByExample(File example);
 }

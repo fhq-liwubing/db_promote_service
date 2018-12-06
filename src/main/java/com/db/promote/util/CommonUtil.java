@@ -5,10 +5,12 @@ import com.alibaba.fastjson.JSONObject;
 import com.db.promote.config.exception.CommonJsonException;
 import com.db.promote.util.constants.Constants;
 import com.db.promote.util.constants.ErrorEnum;
+import com.github.pagehelper.PageInfo;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 import java.util.List;
+import java.util.function.Function;
 
 /**
  * @author: hxy
@@ -205,4 +207,5 @@ public class CommonUtil {
     public static void fillPageParam(final JSONObject paramObject) {
         fillPageParam(paramObject, 10);
     }
+
 }

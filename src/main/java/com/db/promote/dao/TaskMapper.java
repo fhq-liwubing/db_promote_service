@@ -1,10 +1,12 @@
 package com.db.promote.dao;
 
 import com.db.promote.entity.Task;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
- * Created by Mybatis Generator 2018/12/04
- */
+* Created by Mybatis Generator 2018/12/06
+*/
+@Mapper
 public interface TaskMapper {
     int deleteByPrimaryKey(Integer id);
 
