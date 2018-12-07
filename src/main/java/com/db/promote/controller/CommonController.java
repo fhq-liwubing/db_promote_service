@@ -1,7 +1,8 @@
 package com.db.promote.controller;
 
-import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.db.promote.service.CityService;
+import com.db.promote.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -19,8 +20,8 @@ public class CommonController {
     private CityService cityService;
 
     @GetMapping("/city")
-    public String getAllCity() {
-        return JSON.toJSONString(cityService.getAllCity());
+    public JSONObject getAllCity() {
+        return CommonUtil.successJson(cityService.getAllCity());
     }
 
 }
