@@ -4,7 +4,7 @@ import com.db.promote.entity.TaskPackage;
 import org.apache.ibatis.annotations.Mapper;import java.util.List;
 
 /**
- * Created by Mybatis Generator 2018/12/06
+ * Created by Mybatis Generator 2018/12/07
  */
 @Mapper
 public interface TaskPackageMapper {

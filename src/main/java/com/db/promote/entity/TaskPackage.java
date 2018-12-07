@@ -4,7 +4,7 @@ import java.util.Date;
 import lombok.Data;
 
 /**
-* Created by Mybatis Generator 2018/12/06
+* Created by Mybatis Generator 2018/12/07
 */
 @Data
 public class TaskPackage {
@@ -13,6 +13,8 @@ public class TaskPackage {
     private String taskPackageNo;
 
     private String taskPackageName;
+
+    private String terminalNo;
 
     private Byte status;
 

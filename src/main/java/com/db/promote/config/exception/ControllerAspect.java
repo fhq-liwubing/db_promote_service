@@ -21,7 +21,7 @@ public class ControllerAspect {
 
     private static final Logger log = LoggerFactory.getLogger(ControllerAspect.class);
 
-    @Around(value = "execution(public * com.db.promote.controller.*Controller.*(..))")
+    @Around(value = "execution(public * com.db.promote.controller.CommonController.*(..))")
     public Object around(ProceedingJoinPoint pjp) throws Throwable {
         String method = pjp.getSignature().getName();
         Object result = pjp.proceed();
