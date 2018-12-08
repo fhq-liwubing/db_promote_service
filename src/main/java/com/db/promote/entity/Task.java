@@ -4,7 +4,7 @@ import java.util.Date;
 import lombok.Data;
 
 /**
-* Created by Mybatis Generator 2018/12/06
+* Created by Mybatis Generator 2018/12/08
 */
 @Data
 public class Task {
@@ -21,6 +21,8 @@ public class Task {
     private Integer progress;
 
     private String mark;
+
+    private String remark;
 
     private Date completeTime;
 

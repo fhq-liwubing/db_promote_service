@@ -7,6 +7,7 @@ import com.db.promote.util.CommonUtil;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -29,6 +30,11 @@ public class CompanyController {
         Company company = jsonObject.toJavaObject(Company.class);
         PageInfo<Company> pageInfo = companyService.queryByExample(company, jsonObject.getInteger("pageNum"), jsonObject.getInteger("pageRow"));
         return CommonUtil.successPage(pageInfo.getList(), pageInfo.getPages(), pageInfo.getTotal());
+    }
+
+    @GetMapping("/one/{companyNo}")
+    public JSONObject getOneCompany(@PathVariable("companyNo") String companyNo) {
+        return CommonUtil.successJson(companyService.findOne(companyNo));
     }
 
 

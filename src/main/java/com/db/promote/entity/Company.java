@@ -4,11 +4,13 @@ import java.util.Date;
 import lombok.Data;
 
 /**
-* Created by Mybatis Generator 2018/12/05
+* Created by Mybatis Generator 2018/12/08
 */
 @Data
 public class Company {
     private Integer id;
+
+    private String companyNo;
 
     /* 公司名称*/
     private String companyName;

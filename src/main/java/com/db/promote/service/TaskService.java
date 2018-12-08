@@ -10,4 +10,6 @@ import com.github.pagehelper.PageInfo;
 public interface TaskService {
 
     PageInfo<Task> getTaskList(Task task, Integer pageNum, Integer pageRow);
+
+    void updateTask(Task task);
 }

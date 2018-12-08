@@ -13,4 +13,6 @@ public interface CompanyService {
 
     void saveData(Company company);
 
+    Company findOne(String companyNo);
+
 }

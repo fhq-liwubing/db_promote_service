@@ -9,6 +9,8 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
@@ -31,6 +33,12 @@ public class TaskController {
         PageInfo<Task> pageInfo = taskService
                 .getTaskList(jsonObject.toJavaObject(Task.class), jsonObject.getInteger("pageNum"), jsonObject.getInteger("pageRow"));
         return CommonUtil.successPage(pageInfo.getList(), pageInfo.getPages(), pageInfo.getTotal());
+    }
+
+    @PutMapping("/one/{taskNo}")
+    public JSONObject updateTask(@PathVariable("taskNo") Task task) {
+        taskService.updateTask(task);
+        return CommonUtil.successJson();
     }
 
 

@@ -25,4 +25,9 @@ public class TaskServiceImpl implements TaskService {
         return PageHelper.startPage(pageNum, pageRow).doSelectPageInfo(() -> taskMapper.selectByExample(task));
     }
 
+    @Override
+    public void updateTask(Task task) {
+        taskMapper.updateByPrimaryKeySelective(task);
+    }
+
 }

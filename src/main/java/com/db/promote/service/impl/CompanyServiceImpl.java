@@ -40,4 +40,9 @@ public class CompanyServiceImpl implements CompanyService {
             log.info("保存数据库出现异常：{}",ex.getMessage());
         }
     }
+
+    @Override
+    public Company findOne(String companyNo) {
+        return companyMapper.selectByCompanyNo(companyNo);
+    }
 }
