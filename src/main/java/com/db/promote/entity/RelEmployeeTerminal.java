@@ -8,20 +8,12 @@ import lombok.Data;
 * Created by Mybatis Generator 2018/12/26
 */
 @Data
-public class TaskPackage implements Serializable {
+public class RelEmployeeTerminal implements Serializable {
     private Long id;
 
-    private String packageNo;
+    private String employeeNo;
 
-    private String packageName;
-
-    private Integer taskType;
-
-    private String terminal;
-
-    private Integer processStatus;
-
-    private LocalDateTime finishTime;
+    private String terminalNo;
 
     private Integer state;
 

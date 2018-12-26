@@ -8,20 +8,24 @@ import lombok.Data;
 * Created by Mybatis Generator 2018/12/26
 */
 @Data
-public class TaskPackage implements Serializable {
+public class ContactBook implements Serializable {
     private Long id;
 
-    private String packageNo;
+    private String phoneNo;
 
-    private String packageName;
+    private String contactName;
 
-    private Integer taskType;
+    private String contactPhone;
 
-    private String terminal;
+    private String contactCompanyNo;
 
-    private Integer processStatus;
+    private String contactCompanyName;
 
-    private LocalDateTime finishTime;
+    private String contactAddress;
+
+    private String contactEmail;
+
+    private String contactWechat;
 
     private Integer state;
 

@@ -8,20 +8,24 @@ import lombok.Data;
 * Created by Mybatis Generator 2018/12/26
 */
 @Data
-public class TaskPackage implements Serializable {
+public class Phone implements Serializable {
     private Long id;
 
-    private String packageNo;
+    private String phoneNo;
 
-    private String packageName;
+    private Long dataRemain;
 
-    private Integer taskType;
+    private Integer callRemain;
 
-    private String terminal;
+    private Integer msgRemain;
 
-    private Integer processStatus;
+    private String idCardNo;
 
-    private LocalDateTime finishTime;
+    private String wechatNo;
+
+    private String wechatName;
+
+    private String payPassword;
 
     private Integer state;
 

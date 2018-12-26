@@ -1,26 +1,35 @@
 package com.db.promote.entity;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import lombok.Data;
 
 /**
-* Created by Mybatis Generator 2018/12/06
+* Created by Mybatis Generator 2018/12/26
 */
 @Data
-public class Terminal {
-    private Integer id;
+public class Terminal implements Serializable {
+    private Long id;
 
     private String terminalNo;
 
-    private String username;
+    private String identityNo;
 
-    private String password;
+    private String imeiNo;
 
-    private String employeeNo;
+    private String cdkey;
 
-    private Integer status;
+    private String province;
 
-    private Date createTime;
+    private String city;
 
-    private Date updateTime;
+    private Integer state;
+
+    private String remark;
+
+    private LocalDateTime createTime;
+
+    private LocalDateTime updateTime;
+
+    private static final long serialVersionUID = 1L;
 }

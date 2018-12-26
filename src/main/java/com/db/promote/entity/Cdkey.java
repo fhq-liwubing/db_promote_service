@@ -8,20 +8,18 @@ import lombok.Data;
 * Created by Mybatis Generator 2018/12/26
 */
 @Data
-public class TaskPackage implements Serializable {
+public class Cdkey implements Serializable {
     private Long id;
 
-    private String packageNo;
+    private String cdkey;
 
-    private String packageName;
+    private String recievePhone;
 
-    private Integer taskType;
+    private String reciveveEmail;
 
-    private String terminal;
+    private Integer status;
 
-    private Integer processStatus;
-
-    private LocalDateTime finishTime;
+    private LocalDateTime expireTime;
 
     private Integer state;
 

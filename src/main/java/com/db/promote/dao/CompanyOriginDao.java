@@ -9,6 +9,7 @@ import java.util.List;
 
 @Mapper
 public interface CompanyOriginDao {
+
     int insert(@Param("pojo") CompanyOrigin pojo);
 
     int insertSelective(@Param("pojo") CompanyOrigin pojo);

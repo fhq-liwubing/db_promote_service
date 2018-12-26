@@ -1,30 +1,27 @@
 package com.db.promote.entity;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.time.LocalDateTime;
 import lombok.Data;
 
 /**
-* Created by Mybatis Generator 2018/12/06
+* Created by Mybatis Generator 2018/12/26
 */
 @Data
-public class Employee {
-    private Integer id;
+public class Employee implements Serializable {
+    private Long id;
 
     private String employeeNo;
 
-    private String name;
+    private String username;
 
-    private String sex;
+    private Integer state;
 
-    private String phoneNo;
+    private String remark;
 
-    private String email;
+    private LocalDateTime createTime;
 
-    private String province;
+    private LocalDateTime updateTime;
 
-    private String city;
-
-    private Integer status;
-
-    private Date createTime;
+    private static final long serialVersionUID = 1L;
 }

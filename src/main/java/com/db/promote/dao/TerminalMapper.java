@@ -1,27 +1,22 @@
 package com.db.promote.dao;
 
 import com.db.promote.entity.Terminal;
-import com.db.promote.vo.TerminalVO;
-import org.apache.ibatis.annotations.Mapper;import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
- * Created by Mybatis Generator 2018/12/06
- */
+* Created by Mybatis Generator 2018/12/26
+*/
 @Mapper
 public interface TerminalMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(Terminal record);
 
     int insertSelective(Terminal record);
 
-    Terminal selectByPrimaryKey(Integer id);
+    Terminal selectByPrimaryKey(Long id);
 
     int updateByPrimaryKeySelective(Terminal record);
 
     int updateByPrimaryKey(Terminal record);
-
-    List<Terminal> selectByExample(Terminal example);
-
-    List<TerminalVO> selectVOByExample(TerminalVO example);
 }

@@ -1,24 +1,22 @@
 package com.db.promote.dao;
 
 import com.db.promote.entity.Employee;
-import org.apache.ibatis.annotations.Mapper;import java.util.List;
+import org.apache.ibatis.annotations.Mapper;
 
 /**
- * Created by Mybatis Generator 2018/12/06
- */
+* Created by Mybatis Generator 2018/12/26
+*/
 @Mapper
 public interface EmployeeMapper {
-    int deleteByPrimaryKey(Integer id);
+    int deleteByPrimaryKey(Long id);
 
     int insert(Employee record);
 
     int insertSelective(Employee record);
 
-    Employee selectByPrimaryKey(Integer id);
+    Employee selectByPrimaryKey(Long id);
 
     int updateByPrimaryKeySelective(Employee record);
 
     int updateByPrimaryKey(Employee record);
-
-    List<Employee> selectByExample(Employee example);
 }
