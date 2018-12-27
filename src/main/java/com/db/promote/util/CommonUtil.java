@@ -2,6 +2,7 @@ package com.db.promote.util;
 
 import com.alibaba.fastjson.JSONArray;
 import com.alibaba.fastjson.JSONObject;
+import com.db.promote.common.PageRequest;
 import com.db.promote.config.exception.CommonJsonException;
 import com.db.promote.util.constants.Constants;
 import com.db.promote.util.constants.ErrorEnum;
@@ -218,6 +219,33 @@ public class CommonUtil {
      */
     public static void fillPageParam(final JSONObject paramObject) {
         fillPageParam(paramObject, 10);
+    }
+
+    /**
+     * 将请求转化为分页参数对象
+     *
+     * @param request
+     * @param tClass
+     * @param <T>
+     * @return
+     */
+    public static <T> PageRequest<T> requestToPageReq(HttpServletRequest request, Class<T> tClass) {
+        return CommonUtil.jsonToPageReq(CommonUtil.request2Json(request), tClass);
+    }
+    /**
+     * JSON 转化至 分页参数对象
+     *
+     * @param jsonObject
+     * @param tClass
+     * @param <T>
+     * @return
+     */
+    public static <T> PageRequest<T> jsonToPageReq(JSONObject jsonObject, Class<T> tClass) {
+        PageRequest<T> pageRequest = new PageRequest<>();
+        pageRequest.setPageNum(jsonObject.getInteger("pageNum"));
+        pageRequest.setPageRow(jsonObject.getInteger("pageRow"));
+        pageRequest.setExample(jsonObject.toJavaObject(tClass));
+        return pageRequest;
     }
 
 }

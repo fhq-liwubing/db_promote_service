@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 /**
-* Created by Mybatis Generator 2018/12/26
+* Created by Mybatis Generator 2018/12/27
 */
 @Data
 public class Employee implements Serializable {
@@ -14,6 +14,8 @@ public class Employee implements Serializable {
     private String employeeNo;
 
     private String username;
+
+    private String selfPhone;
 
     private Integer state;
 
