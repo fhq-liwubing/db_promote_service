@@ -31,7 +31,7 @@ public class SmsClint {
      * @param content 短信内容
      * @return
      */
-    public SmsVo sms(SmsTypeEnum smsTypeEnum, String[] mobile, String content) {
+    public SmsVo sms( String[] mobile, String content) {
 
         SmsVo smsVo = new SmsVo();
 
@@ -44,18 +44,13 @@ public class SmsClint {
             smsVo.setCode("-1");
             smsVo.setMsg("短信内容不能为空！");
             return smsVo;
-        } else if (smsTypeEnum == null) {
-            smsVo.setCode("-1");
-            smsVo.setMsg("短信类型不能为空！");
-            return smsVo;
         }
-
         HashMap<String, String> param = new HashMap();
         param.put("method", "sendSMS");
         param.put("username", smsConf.getUserName());//用户名
         //密码，这里要采用BASE64 加密算法
         param.put("password", Base64.encode(smsConf.getPassWord().getBytes()));
-        param.put("smstype", smsTypeEnum.getCode());//发送短信的类型
+        param.put("smstype", SmsTypeEnum.NOTICE.getCode());//发送短信的类型
         param.put("mobile", bulidMobile(mobile)); //手机号
         param.put("content", smsConf.getSign() + content);//发送短信内容
         param.put("isLongSms", "0"); // 0-普通短信 1-加长短信
