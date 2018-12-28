@@ -26,12 +26,11 @@ public class SmsClint {
 
     /**
      * 发送短信
-     * @param smsTypeEnum 短信类型
      * @param mobile 接受方手机号，数组
      * @param content 短信内容
      * @return
      */
-    public SmsVo sms( String[] mobile, String content) {
+    public SmsVo sms(String[] mobile, String content) {
 
         SmsVo smsVo = new SmsVo();
 
