@@ -24,3 +24,14 @@ logging:
 mybatis:
   configuration:
     map-underscore-to-camel-case: true
+
+# 短信相关配置
+sms:
+  #用户名
+  userName: 15378711196
+  #密码
+  passWord: 711196
+  #请求地址
+  reqUrl: http://smsapi.jzyyun.com:9003/servlet/UserServiceAPI
+  #签名
+  sign: 【e销售】
