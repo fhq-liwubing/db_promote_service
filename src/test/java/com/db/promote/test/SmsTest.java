@@ -1,6 +1,5 @@
 package com.db.promote.test;
 
-import com.db.promote.common.SmsTypeEnum;
 import com.db.promote.component.SmsClint;
 import com.db.promote.entity.vo.SmsVo;
 import com.db.promote.util.GsonUtil;
@@ -25,7 +24,7 @@ public class SmsTest {
     @Test
     public void sms (){
         String[] mobile = {"18500215","18500215239"};
-        SmsVo smsVo = smsClint.sms(SmsTypeEnum.NOTICE,mobile,"您的激活码为：XXXX,请注意妥善保管");
+        SmsVo smsVo = smsClint.sms(mobile,"您的激活码为：XXXX,请注意妥善保管");
         log.info("最终结果：{}",GsonUtil.buildGson().toJson(smsVo));
     }
 }
