@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 
 /**
  * @author: hxy
@@ -57,6 +58,14 @@ public class CommonUtil {
         return resultJson;
     }
 
+    public static JSONObject errorJson(ErrorEnum errorEnum, String message) {
+        JSONObject resultJson = new JSONObject();
+        resultJson.put("returnCode", errorEnum.getErrorCode());
+        resultJson.put("returnMsg", message);
+        resultJson.put("returnData", new JSONObject());
+        return resultJson;
+    }
+
     /**
      * 查询分页结果后的封装工具方法
      *
@@ -90,6 +99,25 @@ public class CommonUtil {
         JSONObject result = successJson();
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("list", new JSONArray(pageInfo.getList()));
+        jsonObject.put("totalPage", pageInfo.getPages());
+        jsonObject.put("totalCount", pageInfo.getTotal());
+        result.put("returnData", jsonObject);
+        return result;
+    }
+
+    /**
+     * 转换VO分页
+     *
+     * @param pageInfo
+     * @param mapping
+     * @param <T>
+     * @param <R>
+     * @return
+     */
+    public static <T, R> JSONObject successPage(PageInfo<T> pageInfo, Function<T, R> mapping) {
+        JSONObject result = successJson();
+        JSONObject jsonObject = new JSONObject();
+        jsonObject.put("list", new JSONArray(pageInfo.getList().stream().map(mapping).collect(Collectors.toList())));
         jsonObject.put("totalPage", pageInfo.getPages());
         jsonObject.put("totalCount", pageInfo.getTotal());
         result.put("returnData", jsonObject);

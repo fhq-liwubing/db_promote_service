@@ -1,16 +1,17 @@
 package com.db.promote.service.impl;
 
 import com.db.promote.common.PageRequest;
+import com.db.promote.config.exception.CommonJsonException;
 import com.db.promote.dao.CdkeyMapper;
 import com.db.promote.entity.Cdkey;
+import com.db.promote.param.CdkeyBatchGenerateParam;
 import com.db.promote.service.CdkeyService;
+import com.db.promote.util.constants.ErrorEnum;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.UUID;
 
 /**
@@ -24,15 +25,10 @@ public class CdkeyServiceImpl implements CdkeyService {
     private CdkeyMapper cdkeyMapper;
 
     @Override
-    public void generate(int batchSize) {
+    public void generate(CdkeyBatchGenerateParam param) {
 
-        for (int i = 0; i < batchSize; i++) {
-            Cdkey cdkey = new Cdkey();
-            String key = UUID.randomUUID().toString().replace("-", "");
-            cdkey.setCdkey(key);
-            cdkey.setStatus(0);
-            cdkey.setState(1);
-            cdkey.setExpireTime(LocalDateTime.now().plus(1, ChronoUnit.YEARS));
+        for (int i = 0; i < param.getBatchSize(); i++) {
+            Cdkey cdkey = newCdkey(param.getValidDays());
             cdkeyMapper.insertSelective(cdkey);
         }
 
@@ -42,24 +38,42 @@ public class CdkeyServiceImpl implements CdkeyService {
     public void send(Long id, String phone) {
         Cdkey cdkey = cdkeyMapper.selectByPrimaryKey(id);
         if (cdkey == null) {
-            // TODO e
-            return;
+            throw new CommonJsonException(ErrorEnum.E_4000);
         }
         if (cdkey.getStatus() != 0) {
-            // TODO e
-            return;
+            throw new CommonJsonException(ErrorEnum.E_4004);
         }
 
         // TODO send
-        cdkey.setRecievePhone(phone);
+        cdkey.setReceivePhone(phone);
         cdkeyMapper.updateByPrimaryKey(cdkey);
 
+    }
+
+    @Override
+    public void generateAndSend(String phone, Integer days) {
+        Cdkey cdkey = newCdkey(days);
+        cdkey.setReceivePhone(phone);
+
+        // TODO send
+
+        cdkeyMapper.insertSelective(cdkey);
     }
 
     @Override
     public PageInfo<Cdkey> pageSearch(PageRequest<Cdkey> pageRequest) {
         return PageHelper.startPage(pageRequest.getPageNum(), pageRequest.getPageRow())
                 .doSelectPageInfo(() -> cdkeyMapper.selectByExample(pageRequest.getExample()));
+    }
+
+    private Cdkey newCdkey(Integer days) {
+        Cdkey cdkey = new Cdkey();
+        String key = UUID.randomUUID().toString().replace("-", "");
+        cdkey.setCdkey(key);
+        cdkey.setValidateDays(days);
+        cdkey.setStatus(0);
+        cdkey.setState(1);
+        return cdkey;
     }
 
 }

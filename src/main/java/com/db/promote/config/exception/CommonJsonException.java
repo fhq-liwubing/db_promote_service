@@ -24,6 +24,10 @@ public class CommonJsonException extends RuntimeException {
         this.resultJson = CommonUtil.errorJson(errorEnum);
     }
 
+    public CommonJsonException(ErrorEnum errorEnum, String message) {
+        this.resultJson = CommonUtil.errorJson(errorEnum, message);
+    }
+
     public CommonJsonException(JSONObject resultJson) {
         this.resultJson = resultJson;
     }

@@ -2,6 +2,8 @@ package com.db.promote.entity;
 
 import java.io.Serializable;
 import java.time.LocalDateTime;
+import java.util.List;
+
 import lombok.Data;
 
 /**
@@ -24,6 +26,8 @@ public class Employee implements Serializable {
     private LocalDateTime createTime;
 
     private LocalDateTime updateTime;
+
+    private List<Terminal> terminals;
 
     private static final long serialVersionUID = 1L;
 }

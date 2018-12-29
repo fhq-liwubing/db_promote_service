@@ -10,6 +10,5 @@ import com.github.pagehelper.PageInfo;
  */
 public interface EmployeeService {
 
-
     PageInfo<Employee> pageSearch(PageRequest<Employee> pageRequest);
 }

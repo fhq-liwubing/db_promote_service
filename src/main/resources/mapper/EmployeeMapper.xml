@@ -15,6 +15,13 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
+
+    <resultMap id="WithTerminalResultMap" type="com.db.promote.entity.Employee" extends="BaseResultMap">
+        <collection property="terminals" column="employee_no"
+                    select="com.db.promote.dao.TerminalMapper.selectByEmployeeNo">
+        </collection>
+    </resultMap>
+
     <sql id="Base_Column_List">
         <!--
           WARNING - @mbg.generated
@@ -172,4 +179,5 @@
             </if>
         </where>
     </select>
+
 </mapper>

@@ -1,19 +1,19 @@
-package com.db.promote.entity;
+package com.db.promote.vo;
 
-import java.io.Serializable;
-import java.time.LocalDateTime;
 import lombok.Data;
 
+import java.time.LocalDateTime;
+
 /**
-* Created by Mybatis Generator 2018/12/29
-*/
+ * @author kun
+ * @version 2018-12-29 16:26
+ */
 @Data
-public class Terminal implements Serializable {
-    private Long id;
+public class TerminalVO {
 
     private String terminalNo;
 
-    private String employeeNo;
+    private String employeeName;
 
     private String imeiNo;
 
@@ -33,7 +33,4 @@ public class Terminal implements Serializable {
 
     private LocalDateTime updateTime;
 
-    private Employee employee;
-
-    private static final long serialVersionUID = 1L;
 }

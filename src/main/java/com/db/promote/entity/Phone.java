@@ -5,13 +5,15 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 /**
-* Created by Mybatis Generator 2018/12/26
+* Created by Mybatis Generator 2018/12/29
 */
 @Data
 public class Phone implements Serializable {
     private Long id;
 
     private String phoneNo;
+
+    private Integer terminalNo;
 
     private Long dataRemain;
 

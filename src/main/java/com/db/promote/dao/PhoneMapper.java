@@ -4,7 +4,7 @@ import com.db.promote.entity.Phone;
 import org.apache.ibatis.annotations.Mapper;
 
 /**
-* Created by Mybatis Generator 2018/12/26
+* Created by Mybatis Generator 2018/12/29
 */
 @Mapper
 public interface PhoneMapper {

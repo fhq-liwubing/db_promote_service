@@ -2,9 +2,11 @@ package com.db.promote.controller;
 
 import com.alibaba.fastjson.JSONObject;
 import com.db.promote.entity.Cdkey;
+import com.db.promote.param.CdkeyBatchGenerateParam;
 import com.db.promote.service.CdkeyService;
 import com.db.promote.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -26,10 +28,14 @@ public class CdkeyController {
     }
 
     @PostMapping("/generate/batch")
-    public JSONObject generate(@RequestBody JSONObject jsonObject) {
-        Integer batchSize = jsonObject.getInteger("batch_size");
-        batchSize = batchSize == null ? 1 : batchSize;
-        cdkeyService.generate(batchSize);
+    public JSONObject generate(@RequestBody @Validated CdkeyBatchGenerateParam param) {
+        cdkeyService.generate(param);
+        return CommonUtil.successJson();
+    }
+
+    @PostMapping("/generate/send/{phone}/{days}")
+    public JSONObject generateAndSend(@PathVariable String phone, @PathVariable Integer days) {
+        cdkeyService.generateAndSend(phone, days);
         return CommonUtil.successJson();
     }
 
