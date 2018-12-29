@@ -3,6 +3,7 @@ package com.db.promote.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.db.promote.entity.Terminal;
 import com.db.promote.param.TerminalActivateParam;
+import com.db.promote.param.TerminalQueryParam;
 import com.db.promote.service.TerminalService;
 import com.db.promote.util.CommonUtil;
 import com.db.promote.vo.TerminalVO;
@@ -39,7 +40,7 @@ public class TerminalController {
     @GetMapping("/list")
     public JSONObject list(HttpServletRequest request) {
         PageInfo<Terminal> pageInfo = terminalService
-                .pageSearch(CommonUtil.requestToPageReq(request, TerminalVO.class));
+                .pageSearch(CommonUtil.requestToPageReq(request, TerminalQueryParam.class));
         return CommonUtil.successPage(pageInfo, this::buildVO);
     }
 
