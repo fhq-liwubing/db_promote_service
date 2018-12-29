@@ -25,6 +25,8 @@ public class Terminal implements Serializable {
 
     private String city;
 
+    private LocalDateTime assignTime;
+
     private Integer state;
 
     private String remark;

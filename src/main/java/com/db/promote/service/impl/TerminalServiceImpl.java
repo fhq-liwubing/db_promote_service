@@ -6,7 +6,9 @@ import com.db.promote.dao.CdkeyMapper;
 import com.db.promote.dao.TerminalMapper;
 import com.db.promote.entity.Cdkey;
 import com.db.promote.entity.Terminal;
+import com.db.promote.param.AssignTerminalParam;
 import com.db.promote.param.TerminalActivateParam;
+import com.db.promote.param.TerminalQueryParam;
 import com.db.promote.service.TerminalService;
 import com.db.promote.util.constants.ErrorEnum;
 import com.db.promote.vo.TerminalVO;
@@ -74,9 +76,15 @@ public class TerminalServiceImpl implements TerminalService {
     }
 
     @Override
-    public PageInfo<Terminal> pageSearch(PageRequest<TerminalVO> pageRequest) {
+    public PageInfo<Terminal> pageSearch(PageRequest<TerminalQueryParam> pageRequest) {
         return PageHelper.startPage(pageRequest.getPageNum(), pageRequest.getPageRow())
                 .doSelectPageInfo(() -> terminalMapper.selectByExample(pageRequest.getExample()));
+    }
+
+    @Override
+    public PageInfo<Terminal> assignPageSearch(PageRequest<AssignTerminalParam> pageRequest) {
+        return PageHelper.startPage(pageRequest.getPageNum(), pageRequest.getPageRow())
+                .doSelectPageInfo(() -> terminalMapper.selectByExampleForAssign(pageRequest.getExample()));
     }
 
 }

@@ -29,6 +29,8 @@ public class Phone implements Serializable {
 
     private String payPassword;
 
+    private LocalDateTime assignTime;
+
     private Integer state;
 
     private String remark;

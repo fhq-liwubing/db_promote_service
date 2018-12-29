@@ -1,10 +1,9 @@
 package com.db.promote.dao;
 
 import com.db.promote.entity.Terminal;
-import com.db.promote.vo.TerminalVO;
-import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
+import com.db.promote.param.AssignTerminalParam;
+import com.db.promote.param.TerminalQueryParam;
+import com.db.promote.vo.TerminalVO;import org.apache.ibatis.annotations.Mapper;import java.util.List;
 
 /**
  * Created by Mybatis Generator 2018/12/29
@@ -27,5 +26,7 @@ public interface TerminalMapper {
 
     List<Terminal> selectByEmployeeNo(String employeeNo);
 
-    List<Terminal> selectByExample(TerminalVO example);
+    List<Terminal> selectByExample(TerminalQueryParam example);
+
+    List<Terminal> selectByExampleForAssign(AssignTerminalParam example);
 }

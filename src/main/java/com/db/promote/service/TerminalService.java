@@ -2,7 +2,9 @@ package com.db.promote.service;
 
 import com.db.promote.common.PageRequest;
 import com.db.promote.entity.Terminal;
+import com.db.promote.param.AssignTerminalParam;
 import com.db.promote.param.TerminalActivateParam;
+import com.db.promote.param.TerminalQueryParam;
 import com.db.promote.vo.TerminalVO;
 import com.github.pagehelper.PageInfo;
 
@@ -15,5 +17,7 @@ public interface TerminalService {
 
     void check(String imeiNo);
 
-    PageInfo<Terminal> pageSearch(PageRequest<TerminalVO> pageRequest);
+    PageInfo<Terminal> pageSearch(PageRequest<TerminalQueryParam> pageRequest);
+
+    PageInfo<Terminal> assignPageSearch(PageRequest<AssignTerminalParam> pageRequest);
 }
