@@ -9,13 +9,14 @@ import com.db.promote.entity.Terminal;
 import com.db.promote.param.AssignTerminalParam;
 import com.db.promote.param.TerminalActivateParam;
 import com.db.promote.param.TerminalQueryParam;
+import com.db.promote.param.TerminalUpdateParam;
 import com.db.promote.service.TerminalService;
 import com.db.promote.util.constants.ErrorEnum;
-import com.db.promote.vo.TerminalVO;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 
@@ -24,6 +25,7 @@ import java.time.LocalDateTime;
  * @version 2018-12-28 14:36
  */
 @Service
+@Transactional
 public class TerminalServiceImpl implements TerminalService {
 
     @Autowired
@@ -85,6 +87,19 @@ public class TerminalServiceImpl implements TerminalService {
     public PageInfo<Terminal> assignPageSearch(PageRequest<AssignTerminalParam> pageRequest) {
         return PageHelper.startPage(pageRequest.getPageNum(), pageRequest.getPageRow())
                 .doSelectPageInfo(() -> terminalMapper.selectByExampleForAssign(pageRequest.getExample()));
+    }
+
+    @Override
+    public void update(TerminalUpdateParam param) {
+        Terminal terminal = new Terminal();
+        terminal.setTerminalNo(param.getTerminalNo());
+        terminal.setState(param.getState());
+        terminal.setProvince(param.getProvince());
+        terminal.setCity(param.getCity());
+        int i = terminalMapper.updateByPrimaryKeySelective(terminal);
+        if (i == 0) {
+            throw new CommonJsonException(ErrorEnum.E_4000);
+        }
     }
 
 }

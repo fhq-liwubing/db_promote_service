@@ -11,6 +11,7 @@ import lombok.Data;
 */
 @Data
 public class Employee implements Serializable {
+
     private Long id;
 
     private String employeeNo;

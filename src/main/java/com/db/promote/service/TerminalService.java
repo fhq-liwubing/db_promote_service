@@ -5,6 +5,7 @@ import com.db.promote.entity.Terminal;
 import com.db.promote.param.AssignTerminalParam;
 import com.db.promote.param.TerminalActivateParam;
 import com.db.promote.param.TerminalQueryParam;
+import com.db.promote.param.TerminalUpdateParam;
 import com.db.promote.vo.TerminalVO;
 import com.github.pagehelper.PageInfo;
 
@@ -20,4 +21,6 @@ public interface TerminalService {
     PageInfo<Terminal> pageSearch(PageRequest<TerminalQueryParam> pageRequest);
 
     PageInfo<Terminal> assignPageSearch(PageRequest<AssignTerminalParam> pageRequest);
+
+    void update(TerminalUpdateParam param);
 }

@@ -154,9 +154,6 @@
         -->
         update terminal
         <set>
-            <if test="terminalNo != null">
-                terminal_no = #{terminalNo,jdbcType=VARCHAR},
-            </if>
             <if test="employeeNo != null">
                 employee_no = #{employeeNo,jdbcType=VARCHAR},
             </if>
@@ -191,7 +188,7 @@
                 update_time = #{updateTime,jdbcType=TIMESTAMP},
             </if>
         </set>
-        where id = #{id,jdbcType=BIGINT}
+        where terminal_no = #{terminalNo,jdbcType=VARCHAR}
     </update>
     <update id="updateByPrimaryKey" parameterType="com.db.promote.entity.Terminal">
         <!--

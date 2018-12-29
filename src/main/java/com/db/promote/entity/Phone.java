@@ -21,6 +21,8 @@ public class Phone implements Serializable {
 
     private Integer msgRemain;
 
+    private String ownerName;
+
     private String idCardNo;
 
     private String wechatNo;
