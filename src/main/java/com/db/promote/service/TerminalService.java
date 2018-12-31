@@ -2,10 +2,7 @@ package com.db.promote.service;
 
 import com.db.promote.common.PageRequest;
 import com.db.promote.entity.Terminal;
-import com.db.promote.param.AssignTerminalParam;
-import com.db.promote.param.TerminalActivateParam;
-import com.db.promote.param.TerminalQueryParam;
-import com.db.promote.param.TerminalUpdateParam;
+import com.db.promote.param.*;
 import com.db.promote.vo.TerminalVO;
 import com.github.pagehelper.PageInfo;
 
@@ -23,4 +20,6 @@ public interface TerminalService {
     PageInfo<Terminal> assignPageSearch(PageRequest<AssignTerminalParam> pageRequest);
 
     void update(TerminalUpdateParam param);
+
+    void assign(TerminalAssignParam param);
 }

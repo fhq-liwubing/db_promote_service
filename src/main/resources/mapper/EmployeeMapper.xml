@@ -160,10 +160,10 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <select id="selectByExample" resultMap="BaseResultMap">
+    <select id="selectByExample" resultMap="WithTerminalResultMap">
         select
         <include refid="Base_Column_List"/>
-        from t_employee
+        from employee
         <where>
             <if test="employeeNo != null and employeeNo != ''">
                 and employee_no = #{employeeNo,jdbcType=VARCHAR}
@@ -178,6 +178,17 @@
                 and state = #{state,jdbcType=INTEGER}
             </if>
         </where>
+    </select>
+    <select id="selectByEmployeeNo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from employee
+        where employee_no = #{employeeNo,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByUsername" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from employee
+        where username = #{username,jdbcType=VARCHAR}
     </select>
 
 </mapper>

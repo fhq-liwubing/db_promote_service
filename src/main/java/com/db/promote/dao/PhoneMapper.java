@@ -1,10 +1,10 @@
 package com.db.promote.dao;
 
 import com.db.promote.entity.Phone;
-import com.db.promote.param.PhoneQueryParam;import org.apache.ibatis.annotations.Mapper;import java.util.List;
+import com.db.promote.param.AssignPhoneParam;import com.db.promote.param.PhoneQueryParam;import org.apache.ibatis.annotations.Mapper;import java.util.List;
 
 /**
- * Created by Mybatis Generator 2018/12/29
+ * Created by Mybatis Generator 2018/12/31
  */
 @Mapper
 public interface PhoneMapper {
@@ -21,4 +21,12 @@ public interface PhoneMapper {
     int updateByPrimaryKey(Phone record);
 
     List<Phone> selectByExample(PhoneQueryParam param);
+
+    List<Phone> selectByExampleForAssign(AssignPhoneParam param);
+
+    int updateByPhoneNo(Phone phone);
+
+    Phone selectByPhoneNo(String phoneNo);
+
+    List<Phone> selectByPhoneNos(String[] phoneNos);
 }

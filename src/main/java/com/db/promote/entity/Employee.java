@@ -28,7 +28,7 @@ public class Employee implements Serializable {
 
     private LocalDateTime updateTime;
 
-    private List<Terminal> terminals;
-
     private static final long serialVersionUID = 1L;
+
+    private List<Terminal> terminals;
 }

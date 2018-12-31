@@ -1,6 +1,7 @@
 package com.db.promote.service.impl;
 
 import com.db.promote.common.PageRequest;
+import com.db.promote.component.SmsClint;
 import com.db.promote.config.exception.CommonJsonException;
 import com.db.promote.dao.CdkeyMapper;
 import com.db.promote.entity.Cdkey;
@@ -23,6 +24,8 @@ public class CdkeyServiceImpl implements CdkeyService {
 
     @Autowired
     private CdkeyMapper cdkeyMapper;
+    @Autowired
+    private SmsClint smsClint;
 
     @Override
     public void generate(CdkeyBatchGenerateParam param) {
@@ -44,7 +47,7 @@ public class CdkeyServiceImpl implements CdkeyService {
             throw new CommonJsonException(ErrorEnum.E_4004);
         }
 
-        // TODO send
+        smsClint.sms(new String[]{phone}, String.format(SmsClint.CDKEY_TEMPLATE, cdkey.getCdkey()));
         cdkey.setReceivePhone(phone);
         cdkeyMapper.updateByPrimaryKey(cdkey);
 
@@ -55,8 +58,7 @@ public class CdkeyServiceImpl implements CdkeyService {
         Cdkey cdkey = newCdkey(days);
         cdkey.setReceivePhone(phone);
 
-        // TODO send
-
+        smsClint.sms(new String[]{phone}, String.format(SmsClint.CDKEY_TEMPLATE, cdkey.getCdkey()));
         cdkeyMapper.insertSelective(cdkey);
     }
 

@@ -3,22 +3,23 @@ package com.db.promote.service.impl;
 import com.db.promote.common.PageRequest;
 import com.db.promote.config.exception.CommonJsonException;
 import com.db.promote.dao.CdkeyMapper;
+import com.db.promote.dao.EmployeeMapper;
 import com.db.promote.dao.TerminalMapper;
 import com.db.promote.entity.Cdkey;
+import com.db.promote.entity.Employee;
 import com.db.promote.entity.Terminal;
-import com.db.promote.param.AssignTerminalParam;
-import com.db.promote.param.TerminalActivateParam;
-import com.db.promote.param.TerminalQueryParam;
-import com.db.promote.param.TerminalUpdateParam;
+import com.db.promote.param.*;
 import com.db.promote.service.TerminalService;
 import com.db.promote.util.constants.ErrorEnum;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 /**
  * @author kun
@@ -30,6 +31,8 @@ public class TerminalServiceImpl implements TerminalService {
 
     @Autowired
     private TerminalMapper terminalMapper;
+    @Autowired
+    private EmployeeMapper employeeMapper;
     @Autowired
     private CdkeyMapper cdkeyMapper;
 
@@ -45,6 +48,7 @@ public class TerminalServiceImpl implements TerminalService {
         }
 
         cdkey.setActTerminal(activateParam.getIdentityNo());
+        cdkey.setStatus(1);
         cdkeyMapper.updateByPrimaryKeySelective(cdkey);
 
         Terminal terminal = new Terminal();
@@ -99,6 +103,45 @@ public class TerminalServiceImpl implements TerminalService {
         int i = terminalMapper.updateByPrimaryKeySelective(terminal);
         if (i == 0) {
             throw new CommonJsonException(ErrorEnum.E_4000);
+        }
+    }
+
+    @Override
+    public void assign(TerminalAssignParam param) {
+        final String employeeNo = param.getEmployeeNo();
+        final String username = param.getUsername();
+        final String[] terminalNos = param.getTerminalNos();
+
+        if (StringUtils.isBlank(employeeNo) && StringUtils.isBlank(username)) {
+            throw new CommonJsonException(ErrorEnum.E_90003, "缺少员工信息");
+        }
+
+        Employee employee = null;
+        if (StringUtils.isNotBlank(employeeNo)) {
+            employee = employeeMapper.selectByEmployeeNo(employeeNo);
+        }
+        if (StringUtils.isNotBlank(username)) {
+            List<Employee> employees = employeeMapper.selectByUsername(username);
+            if (employees.size() > 1) {
+                throw new CommonJsonException(ErrorEnum.E_4009);
+            }
+            if (!employees.isEmpty()) {
+                employee = employees.get(0);
+            }
+        }
+        if (employee == null) {
+            throw new CommonJsonException(ErrorEnum.E_4000, "员工不存在，请重新指定");
+        }
+        List<Terminal> terminals = terminalMapper.selectByTerminalNos(terminalNos);
+        if (terminalNos.length != terminals.size()) {
+            throw new CommonJsonException(ErrorEnum.E_4000, "缺少设备信息");
+        }
+
+        LocalDateTime now = LocalDateTime.now();
+        for (Terminal terminal : terminals) {
+            terminal.setAssignTime(now);
+            terminal.setEmployeeNo(employeeNo);
+            terminalMapper.updateByPrimaryKeySelective(terminal);
         }
     }
 

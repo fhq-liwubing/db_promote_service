@@ -33,7 +33,7 @@ public class TerminalController {
     }
 
     @GetMapping("/check/{imei}")
-    public JSONObject check(String imei) {
+    public JSONObject check(@PathVariable String imei) {
         terminalService.check(imei);
         return CommonUtil.successJson();
     }

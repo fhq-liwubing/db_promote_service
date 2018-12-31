@@ -273,6 +273,12 @@ public class CommonUtil {
         pageRequest.setPageNum(jsonObject.getInteger("pageNum"));
         pageRequest.setPageRow(jsonObject.getInteger("pageRow"));
         pageRequest.setExample(jsonObject.toJavaObject(tClass));
+        if (pageRequest.getPageNum() == null) {
+            pageRequest.setPageNum(0);
+        }
+        if (pageRequest.getPageRow() == null) {
+            pageRequest.setPageRow(20);
+        }
         return pageRequest;
     }
 

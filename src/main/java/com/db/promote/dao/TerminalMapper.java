@@ -24,11 +24,13 @@ public interface TerminalMapper {
 
     Terminal selectByImeiNo(String imeiNo);
 
-    Terminal selectByTerminalNo(String terminalNo);
-
     List<Terminal> selectByEmployeeNo(String employeeNo);
 
     List<Terminal> selectByExample(TerminalQueryParam example);
 
     List<Terminal> selectByExampleForAssign(AssignTerminalParam example);
+
+    Terminal selectByTerminalNo(String terminalNo);
+
+    List<Terminal> selectByTerminalNos(String[] identityNos);
 }

@@ -24,4 +24,7 @@ public interface EmployeeMapper {
 
     List<Employee> selectByExample(Employee example);
 
+    Employee selectByEmployeeNo(String employeeNo);
+
+    List<Employee> selectByUsername(String username);
 }

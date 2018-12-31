@@ -271,4 +271,18 @@
             </if>
         </where>
     </select>
+    <select id="selectByTerminalNo" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from terminal where terminal_no = #{terminalNo,jdbcType=VARCHAR}
+    </select>
+    <select id="selectByTerminalNos" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from terminal
+        where terminal_no in
+        <foreach collection="array" item="terminalNo" separator="," open="(" close=")">
+            #{terminalNo}
+        </foreach>
+    </select>
 </mapper>

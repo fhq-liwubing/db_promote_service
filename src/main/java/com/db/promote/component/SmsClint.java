@@ -21,6 +21,8 @@ import java.util.HashMap;
 @Component
 public class SmsClint {
 
+    public static final String CDKEY_TEMPLATE = "激活码：%s";
+
     @Autowired
     private SmsConf smsConf;
 
