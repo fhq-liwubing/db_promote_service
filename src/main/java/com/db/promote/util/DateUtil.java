@@ -19,9 +19,13 @@ import java.util.Date;
 public class DateUtil {
 
     private static final String PATTERN_DATETIME = "yyyy-MM-dd HH:mm:ss";
+
     private static final String PATTERN_DATE = "yyyy-MM-dd";
+
     private static final String PATTERN_FOURTEEN = "yyyyMMddHHmmss";
-    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(PATTERN_DATETIME);
+
+    private static final DateTimeFormatter FORMATTER =
+            DateTimeFormatter.ofPattern(PATTERN_DATETIME);
 
     public static String formatDateTime(Date date) {
         return format(PATTERN_DATETIME, date);
@@ -32,12 +36,12 @@ public class DateUtil {
     }
 
     /**
-     * @description 解析字符串为日期对象
      * @param date
      * @param pattern
      * @return
+     * @description 解析字符串为日期对象
      */
-    public static Date parseDate(String date, String pattern){
+    public static Date parseDate(String date, String pattern) {
         SimpleDateFormat sdf = new SimpleDateFormat(pattern);
         ParsePosition pp = new ParsePosition(0);
         return sdf.parse(date, pp);
@@ -157,10 +161,11 @@ public class DateUtil {
 
     /**
      * date类型时间转换为LocalDateTime
+     *
      * @param date
      * @return
      */
-    public static LocalDateTime toLocalDateTime(Date date){
+    public static LocalDateTime toLocalDateTime(Date date) {
         Instant instant = date.toInstant();
         ZoneId zone = ZoneId.systemDefault();
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, zone);
@@ -169,10 +174,11 @@ public class DateUtil {
 
     /**
      * String类型时间转换为LocalDateTime
+     *
      * @param dateTime
      * @return
      */
-    public static LocalDateTime toLocalDateTime(String dateTime){
+    public static LocalDateTime toLocalDateTime(String dateTime) {
         Date date = parseDateTime(dateTime);
         Instant instant = date.toInstant();
         ZoneId zone = ZoneId.systemDefault();
@@ -181,7 +187,10 @@ public class DateUtil {
     }
 
     public static String format(LocalDateTime dateTime) {
-        return FORMATTER.format(dateTime);
+        if (dateTime != null) {
+            return FORMATTER.format(dateTime);
+        }
+        return null;
     }
 
 }

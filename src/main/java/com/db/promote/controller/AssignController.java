@@ -74,7 +74,10 @@ public class AssignController {
         if (terminal.getEmployee() != null) {
             vo.setEmployeeName(terminal.getEmployee().getUsername());
         }
-        vo.setAssignTime(DateUtil.format(terminal.getAssignTime()));
+        if(terminal.getAssignTime() !=null){
+
+            vo.setAssignTime(DateUtil.format(terminal.getAssignTime()));
+        }
         return vo;
     }
 }
