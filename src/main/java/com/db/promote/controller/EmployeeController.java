@@ -6,6 +6,7 @@ import com.db.promote.param.EmployeeAddParam;
 import com.db.promote.param.EmployeeUpdateParam;
 import com.db.promote.service.EmployeeService;
 import com.db.promote.util.CommonUtil;
+import com.db.promote.util.DateUtil;
 import com.db.promote.vo.EmployeeVO;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,6 +14,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author kun
@@ -29,6 +31,12 @@ public class EmployeeController {
     public JSONObject list(HttpServletRequest request) {
         PageInfo<Employee> pageInfo = employeeService.pageSearch(CommonUtil.requestToPageReq(request, Employee.class));
         return CommonUtil.successPage(pageInfo, this::buildVO);
+    }
+
+    @GetMapping("/list/all")
+    public JSONObject all() {
+        List<Employee> all = employeeService.getAll();
+        return CommonUtil.successList(all);
     }
 
     @PostMapping("/add")
@@ -51,8 +59,8 @@ public class EmployeeController {
         vo.setRemark(employee.getRemark());
         vo.setState(employee.getState());
         vo.setTerminalCount(employee.getTerminals().size());
-        vo.setCreateTime(employee.getCreateTime());
-        vo.setUpdateTime(employee.getUpdateTime());
+        vo.setCreateTime(DateUtil.format(employee.getCreateTime()));
+        vo.setUpdateTime(DateUtil.format(employee.getUpdateTime()));
         return vo;
     }
 

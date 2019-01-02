@@ -44,6 +44,14 @@ public class CommonUtil {
         return resultJson;
     }
 
+    public static JSONObject successList(List list) {
+        JSONObject resultJson = new JSONObject();
+        resultJson.put("returnCode", Constants.SUCCESS_CODE);
+        resultJson.put("returnMsg", Constants.SUCCESS_MSG);
+        resultJson.put("returnData", new JSONArray(list));
+        return resultJson;
+    }
+
     /**
      * 返回错误信息JSON
      *

@@ -19,7 +19,7 @@ public class TerminalVO {
 
     private String cdkey;
 
-    private LocalDateTime expireTime;
+    private String expireTime;
 
     private String province;
 
@@ -29,8 +29,8 @@ public class TerminalVO {
 
     private String remark;
 
-    private LocalDateTime createTime;
+    private String createTime;
 
-    private LocalDateTime updateTime;
+    private String updateTime;
 
 }

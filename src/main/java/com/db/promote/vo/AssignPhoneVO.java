@@ -15,6 +15,6 @@ public class AssignPhoneVO {
 
     private String terminalNo;
 
-    private LocalDateTime assignTime;
+    private String assignTime;
 
 }

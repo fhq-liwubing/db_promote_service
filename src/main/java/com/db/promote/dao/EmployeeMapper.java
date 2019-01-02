@@ -10,6 +10,7 @@ import java.util.List;
  */
 @Mapper
 public interface EmployeeMapper {
+
     int deleteByPrimaryKey(Long id);
 
     int insert(Employee record);
@@ -27,4 +28,6 @@ public interface EmployeeMapper {
     Employee selectByEmployeeNo(String employeeNo);
 
     List<Employee> selectByUsername(String username);
+
+    List<Employee> selectAll();
 }

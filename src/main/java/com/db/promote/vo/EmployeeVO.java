@@ -21,9 +21,9 @@ public class EmployeeVO {
 
     private String remark;
 
-    private LocalDateTime createTime;
+    private String createTime;
 
-    private LocalDateTime updateTime;
+    private String updateTime;
 
     private Integer terminalCount;
 

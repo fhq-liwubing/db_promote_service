@@ -7,6 +7,8 @@ import com.db.promote.param.PhoneQueryParam;
 import com.db.promote.param.PhoneUpdateParam;
 import com.db.promote.service.PhoneService;
 import com.db.promote.util.CommonUtil;
+import com.db.promote.util.DateUtil;
+import com.db.promote.vo.PhoneVO;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
@@ -29,7 +31,7 @@ public class PhoneController {
     public JSONObject list(HttpServletRequest request) {
         PageInfo<Phone> pageInfo = phoneService
                 .pageSearch(CommonUtil.requestToPageReq(request, PhoneQueryParam.class));
-        return CommonUtil.successPage(pageInfo);
+        return CommonUtil.successPage(pageInfo, this::buildVO);
     }
 
     @PostMapping("/add")
@@ -44,7 +46,25 @@ public class PhoneController {
         return CommonUtil.successJson();
     }
 
-
+    private PhoneVO buildVO(Phone phone) {
+        PhoneVO vo = new PhoneVO();
+        vo.setPhoneNo(phone.getPhoneNo());
+        vo.setTerminalNo(phone.getTerminalNo());
+        vo.setDataRemain(phone.getDataRemain());
+        vo.setCallRemain(phone.getCallRemain());
+        vo.setMsgRemain(phone.getMsgRemain());
+        vo.setOwnerName(phone.getOwnerName());
+        vo.setIdCardNo(phone.getIdCardNo());
+        vo.setWechatName(phone.getWechatName());
+        vo.setWechatNo(phone.getWechatNo());
+        vo.setPayPassword(phone.getPayPassword());
+        vo.setAssignTime(DateUtil.format(phone.getAssignTime()));
+        vo.setState(phone.getState());
+        vo.setRemark(phone.getRemark());
+        vo.setCreateTime(DateUtil.format(phone.getCreateTime()));
+        vo.setUpdateTime(DateUtil.format(phone.getUpdateTime()));
+        return vo;
+    }
 
 
 }

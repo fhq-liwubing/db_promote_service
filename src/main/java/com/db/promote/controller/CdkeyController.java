@@ -5,6 +5,8 @@ import com.db.promote.entity.Cdkey;
 import com.db.promote.param.CdkeyBatchGenerateParam;
 import com.db.promote.service.CdkeyService;
 import com.db.promote.util.CommonUtil;
+import com.db.promote.util.DateUtil;
+import com.db.promote.vo.CdkeyVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -24,7 +26,10 @@ public class CdkeyController {
 
     @GetMapping("/list")
     public JSONObject list(HttpServletRequest request) {
-        return CommonUtil.successPage(cdkeyService.pageSearch(CommonUtil.requestToPageReq(request, Cdkey.class)));
+        return CommonUtil.successPage(
+                cdkeyService.pageSearch(CommonUtil.requestToPageReq(request, Cdkey.class)),
+                this::buildVO
+        );
     }
 
     @PostMapping("/generate/batch")
@@ -43,6 +48,19 @@ public class CdkeyController {
     public JSONObject send(@PathVariable("id") Long id, @PathVariable("phone") String phone) {
         cdkeyService.send(id, phone);
         return CommonUtil.successJson();
+    }
+
+    private CdkeyVO buildVO(Cdkey cdkey) {
+        CdkeyVO vo = new CdkeyVO();
+        vo.setCdkey(cdkey.getCdkey());
+        vo.setReceivePhone(cdkey.getReceivePhone());
+        vo.setReceiveEmail(cdkey.getReceiveEmail());
+        vo.setStatus(cdkey.getStatus());
+        vo.setValidateDays(cdkey.getValidateDays());
+        vo.setRemark(cdkey.getRemark());
+        vo.setCreateTime(DateUtil.format(cdkey.getCreateTime()));
+        vo.setUpdateTime(DateUtil.format(cdkey.getUpdateTime()));
+        return vo;
     }
 
 }

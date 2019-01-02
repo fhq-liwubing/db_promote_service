@@ -7,6 +7,7 @@ import com.db.promote.param.TerminalQueryParam;
 import com.db.promote.param.TerminalUpdateParam;
 import com.db.promote.service.TerminalService;
 import com.db.promote.util.CommonUtil;
+import com.db.promote.util.DateUtil;
 import com.db.promote.vo.TerminalVO;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -57,13 +58,13 @@ public class TerminalController {
         vo.setEmployeeName(terminal.getEmployee() == null ? null : terminal.getEmployee().getUsername());
         vo.setImeiNo(terminal.getImeiNo());
         vo.setCdkey(terminal.getCdkey());
-        vo.setExpireTime(terminal.getExpireTime());
+        vo.setExpireTime(DateUtil.format(terminal.getExpireTime()));
         vo.setProvince(terminal.getProvince());
         vo.setCity(terminal.getCity());
         vo.setRemark(terminal.getRemark());
         vo.setState(terminal.getState());
-        vo.setCreateTime(terminal.getCreateTime());
-        vo.setUpdateTime(terminal.getUpdateTime());
+        vo.setCreateTime(DateUtil.format(terminal.getCreateTime()));
+        vo.setUpdateTime(DateUtil.format(terminal.getUpdateTime()));
         return vo;
     }
 }

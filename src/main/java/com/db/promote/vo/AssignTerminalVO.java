@@ -17,7 +17,7 @@ public class AssignTerminalVO {
 
     private String employeeName;
 
-    private LocalDateTime assignTime;
+    private String assignTime;
 
 
 }

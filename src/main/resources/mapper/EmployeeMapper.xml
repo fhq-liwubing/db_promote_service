@@ -186,9 +186,15 @@
         where employee_no = #{employeeNo,jdbcType=VARCHAR}
     </select>
     <select id="selectByUsername" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List"/>
+        select
+        <include refid="Base_Column_List"/>
         from employee
         where username = #{username,jdbcType=VARCHAR}
+    </select>
+    <select id="selectAll" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from employee where 1 = 1
     </select>
 
 </mapper>

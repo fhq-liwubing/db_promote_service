@@ -14,6 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.UUID;
 
 /**
@@ -55,6 +56,11 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setSelfPhone(param.getSelfPhone());
         employee.setState(param.getState());
         employeeMapper.updateByPrimaryKeySelective(employee);
+    }
+
+    @Override
+    public List<Employee> getAll() {
+        return employeeMapper.selectAll();
     }
 
 }

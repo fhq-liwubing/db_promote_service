@@ -9,6 +9,7 @@ import java.text.SimpleDateFormat;
 import java.time.Instant;
 import java.time.LocalDateTime;
 import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -18,8 +19,9 @@ import java.util.Date;
 public class DateUtil {
 
     private static final String PATTERN_DATETIME = "yyyy-MM-dd HH:mm:ss";
-    public static final String PATTERN_DATE = "yyyy-MM-dd";
-    public static final String PATTERN_FOURTEEN = "yyyyMMddHHmmss";
+    private static final String PATTERN_DATE = "yyyy-MM-dd";
+    private static final String PATTERN_FOURTEEN = "yyyyMMddHHmmss";
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(PATTERN_DATETIME);
 
     public static String formatDateTime(Date date) {
         return format(PATTERN_DATETIME, date);
@@ -176,6 +178,10 @@ public class DateUtil {
         ZoneId zone = ZoneId.systemDefault();
         LocalDateTime localDateTime = LocalDateTime.ofInstant(instant, zone);
         return localDateTime;
+    }
+
+    public static String format(LocalDateTime dateTime) {
+        return FORMATTER.format(dateTime);
     }
 
 }

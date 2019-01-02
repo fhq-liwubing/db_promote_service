@@ -10,6 +10,7 @@ import com.db.promote.param.TerminalAssignParam;
 import com.db.promote.service.PhoneService;
 import com.db.promote.service.TerminalService;
 import com.db.promote.util.CommonUtil;
+import com.db.promote.util.DateUtil;
 import com.db.promote.vo.AssignPhoneVO;
 import com.db.promote.vo.AssignTerminalVO;
 import com.github.pagehelper.PageInfo;
@@ -62,7 +63,7 @@ public class AssignController {
         AssignPhoneVO vo = new AssignPhoneVO();
         vo.setTerminalNo(phone.getTerminalNo());
         vo.setPhoneNo(phone.getPhoneNo());
-        vo.setAssignTime(phone.getAssignTime());
+        vo.setAssignTime(DateUtil.format(phone.getAssignTime()));
         return vo;
     }
 
@@ -73,7 +74,7 @@ public class AssignController {
         if (terminal.getEmployee() != null) {
             vo.setEmployeeName(terminal.getEmployee().getUsername());
         }
-        vo.setAssignTime(terminal.getAssignTime());
+        vo.setAssignTime(DateUtil.format(terminal.getAssignTime()));
         return vo;
     }
 }
