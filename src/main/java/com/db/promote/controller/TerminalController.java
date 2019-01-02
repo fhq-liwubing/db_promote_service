@@ -58,7 +58,7 @@ public class TerminalController {
         vo.setEmployeeName(terminal.getEmployee() == null ? null : terminal.getEmployee().getUsername());
         vo.setImeiNo(terminal.getImeiNo());
         vo.setCdkey(terminal.getCdkey());
-        vo.setExpireTime(DateUtil.format(terminal.getExpireTime()));
+        vo.setExpireTime(terminal.getExpireTime() == null ? null : DateUtil.format(terminal.getExpireTime()));
         vo.setProvince(terminal.getProvince());
         vo.setCity(terminal.getCity());
         vo.setRemark(terminal.getRemark());

@@ -58,7 +58,7 @@ public class PhoneController {
         vo.setWechatName(phone.getWechatName());
         vo.setWechatNo(phone.getWechatNo());
         vo.setPayPassword(phone.getPayPassword());
-        vo.setAssignTime(DateUtil.format(phone.getAssignTime()));
+        vo.setAssignTime(phone.getAssignTime() == null ? null : DateUtil.format(phone.getAssignTime()));
         vo.setState(phone.getState());
         vo.setRemark(phone.getRemark());
         vo.setCreateTime(DateUtil.format(phone.getCreateTime()));
