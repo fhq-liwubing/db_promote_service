@@ -45,7 +45,7 @@ public class TerminalController {
         return CommonUtil.successPage(pageInfo, this::buildVO);
     }
 
-    @PutMapping("/update")
+    @PostMapping("/update")
     public JSONObject update(TerminalUpdateParam param) {
         terminalService.update(param);
         return CommonUtil.successJson();
@@ -54,7 +54,7 @@ public class TerminalController {
     private TerminalVO buildVO(Terminal terminal) {
         TerminalVO vo = new TerminalVO();
         vo.setTerminalNo(terminal.getTerminalNo());
-        vo.setEmployeeName(terminal.getEmployee().getUsername());
+        vo.setEmployeeName(terminal.getEmployee() == null ? null : terminal.getEmployee().getUsername());
         vo.setImeiNo(terminal.getImeiNo());
         vo.setCdkey(terminal.getCdkey());
         vo.setExpireTime(terminal.getExpireTime());

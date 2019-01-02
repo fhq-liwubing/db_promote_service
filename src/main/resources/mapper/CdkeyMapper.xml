@@ -197,11 +197,11 @@
             <if test="cdkey != null and cdkey != ''">
                 and cdkey like concat('%', #{cdkey,jdbcType=VARCHAR}, '%')
             </if>
-            <if test="recievePhone != null and recievePhone != ''">
-                and receive_phone = #{recievePhone,jdbcType=VARCHAR}
+            <if test="receivePhone != null and receivePhone != ''">
+                and receive_phone = #{receivePhone,jdbcType=VARCHAR}
             </if>
-            <if test="reciveveEmail != null and reciveveEmail != ''">
-                and receive_email = #{reciveveEmail,jdbcType=VARCHAR}
+            <if test="receiveEmail != null and receiveEmail != ''">
+                and receive_email = #{receiveEmail,jdbcType=VARCHAR}
             </if>
             <if test="status != null">
                 and `status` = #{status,jdbcType=INTEGER}
