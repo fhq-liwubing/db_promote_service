@@ -255,7 +255,7 @@
         from terminal t left join employee e on t.employee_no = e.employee_no
         <where>
             <if test="terminalNo != null and terminalNo != ''">
-                and t.terminal_no = #{employeeNo,jdbcType=VARCHAR}
+                and t.terminal_no = #{terminalNo,jdbcType=VARCHAR}
             </if>
             <if test="employeeNo != null and employeeNo != ''">
                 and t.employee_no = #{employeeNo,jdbcType=VARCHAR}
