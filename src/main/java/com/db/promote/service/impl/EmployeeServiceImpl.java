@@ -55,6 +55,7 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setUsername(param.getUsername());
         employee.setSelfPhone(param.getSelfPhone());
         employee.setState(param.getState());
+        employee.setRemark(param.getRemark());
         employeeMapper.updateByPrimaryKeySelective(employee);
     }
 

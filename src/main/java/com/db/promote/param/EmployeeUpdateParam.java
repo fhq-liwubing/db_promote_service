@@ -19,4 +19,6 @@ public class EmployeeUpdateParam {
 
     private Integer state;
 
+    private String remark;
+
 }
