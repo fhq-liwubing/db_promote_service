@@ -3,6 +3,7 @@ package com.db.promote.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.db.promote.entity.Employee;
 import com.db.promote.param.EmployeeAddParam;
+import com.db.promote.param.EmployeeUpdateParam;
 import com.db.promote.service.EmployeeService;
 import com.db.promote.util.CommonUtil;
 import com.db.promote.vo.EmployeeVO;
@@ -33,6 +34,12 @@ public class EmployeeController {
     @PostMapping("/add")
     public JSONObject add(@Validated @RequestBody EmployeeAddParam param) {
         employeeService.add(param);
+        return CommonUtil.successJson();
+    }
+
+    @PostMapping("/update")
+    public JSONObject update(@Validated @RequestBody EmployeeUpdateParam param) {
+        employeeService.update(param);
         return CommonUtil.successJson();
     }
 

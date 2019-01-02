@@ -1,10 +1,13 @@
 package com.db.promote.service.impl;
 
 import com.db.promote.common.PageRequest;
+import com.db.promote.config.exception.CommonJsonException;
 import com.db.promote.dao.EmployeeMapper;
 import com.db.promote.entity.Employee;
 import com.db.promote.param.EmployeeAddParam;
+import com.db.promote.param.EmployeeUpdateParam;
 import com.db.promote.service.EmployeeService;
+import com.db.promote.util.constants.ErrorEnum;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -40,6 +43,18 @@ public class EmployeeServiceImpl implements EmployeeService {
         employee.setRemark(param.getRemark());
         employee.setState(1);
         employeeMapper.insertSelective(employee);
+    }
+
+    @Override
+    public void update(EmployeeUpdateParam param) {
+        Employee employee = employeeMapper.selectByEmployeeNo(param.getEmployeeNo());
+        if (employee == null) {
+            throw new CommonJsonException(ErrorEnum.E_4000, "员工信息不存在");
+        }
+        employee.setUsername(param.getUsername());
+        employee.setSelfPhone(param.getSelfPhone());
+        employee.setState(param.getState());
+        employeeMapper.updateByPrimaryKeySelective(employee);
     }
 
 }
