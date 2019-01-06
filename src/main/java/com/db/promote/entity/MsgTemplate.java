@@ -5,15 +5,19 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 /**
-* Created by Mybatis Generator 2018/12/26
+* Created by Mybatis Generator 2019/01/06
 */
 @Data
 public class MsgTemplate implements Serializable {
-    private Long id;
+    private Integer id;
 
-    private String templateId;
+    private String templateNo;
+
+    private String templateName;
 
     private String content;
+
+    private Integer paramSize;
 
     private Integer state;
 

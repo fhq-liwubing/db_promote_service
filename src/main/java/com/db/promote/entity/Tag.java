@@ -5,13 +5,13 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 /**
-* Created by Mybatis Generator 2018/12/26
+* Created by Mybatis Generator 2019/01/06
 */
 @Data
 public class Tag implements Serializable {
     private Long id;
 
-    private String tagType;
+    private Integer tagType;
 
     private String tagNo;
 
