@@ -20,6 +20,10 @@
         <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
         <result column="update_time" jdbcType="TIMESTAMP" property="updateTime"/>
     </resultMap>
+    <resultMap extends="BaseResultMap" id="AllResultMap" type="com.db.promote.entity.Terminal">
+        <association property="employee" resultMap="com.db.promote.dao.EmployeeMapper.BaseResultMap">
+        </association>
+    </resultMap>
     <sql id="Base_Column_List">
         <!--
           WARNING - @mbg.generated
@@ -210,10 +214,6 @@
         update_time = #{updateTime,jdbcType=TIMESTAMP}
         where id = #{id,jdbcType=BIGINT}
     </update>
-    <resultMap extends="BaseResultMap" id="AllResultMap" type="com.db.promote.entity.Terminal">
-        <association columnPrefix="e." property="employee" resultMap="com.db.promote.dao.EmployeeMapper.BaseResultMap">
-        </association>
-    </resultMap>
     <select id="selectByImeiNo" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
@@ -251,7 +251,7 @@
         </where>
     </select>
     <select id="selectByExampleForAssign" resultMap="AllResultMap">
-        select *
+        select t.*, e.*
         from terminal t left join employee e on t.employee_no = e.employee_no
         <where>
             <if test="terminalNo != null and terminalNo != ''">
