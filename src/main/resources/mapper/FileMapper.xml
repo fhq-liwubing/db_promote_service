@@ -220,4 +220,8 @@
         select <include refid="Base_Column_List"/>
         from file where `state` = 1 and belong_terminal in ('0', #{terminalNo})
     </select>
+    <select id="selectByFileNo" resultMap="BaseResultMap">
+        select <include refid="Base_Column_List"/>
+        from file where file_no = #{fileNo,jdbcType=VARCHAR}
+    </select>
 </mapper>

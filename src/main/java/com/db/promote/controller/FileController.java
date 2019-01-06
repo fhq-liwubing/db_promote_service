@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import java.io.*;
 import java.util.UUID;
 
@@ -73,7 +74,10 @@ public class FileController implements InitializingBean {
         return CommonUtil.successJson();
     }
 
-    public JSONObject downLoad(String fileNo) {
+    @GetMapping("/download/{fileNo}")
+    public JSONObject downLoad(@PathVariable String fileNo, HttpServletResponse response) {
+        String filePath = fileService.getFilePath(fileNo);
+
         return null;
     }
 

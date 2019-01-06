@@ -26,4 +26,6 @@ public interface FileMapper {
     List<File> selectByExample(FileQueryParam param);
 
     List<File> selectAll(String terminalNo);
+
+    File selectByFileNo(String fileNo);
 }

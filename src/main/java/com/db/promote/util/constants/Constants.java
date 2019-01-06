@@ -19,5 +19,5 @@ public class Constants {
     /**
      * 文件路径
      */
-    public static final String FILE_DIR = "./data/file/";
+    public static final String FILE_DIR = "/data/promote/file/";
 }

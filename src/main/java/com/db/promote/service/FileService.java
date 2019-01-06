@@ -19,4 +19,6 @@ public interface FileService {
     List<File> queryAll(String terminalNo);
 
     void uploadFinish(FileUploadParam param, String fileNo, String filePath);
+
+    String getFilePath(String fileNo);
 }

@@ -1,11 +1,13 @@
 package com.db.promote.service.impl;
 
 import com.db.promote.common.PageRequest;
+import com.db.promote.config.exception.CommonJsonException;
 import com.db.promote.dao.FileMapper;
 import com.db.promote.entity.File;
 import com.db.promote.param.FileQueryParam;
 import com.db.promote.param.FileUploadParam;
 import com.db.promote.service.FileService;
+import com.db.promote.util.constants.ErrorEnum;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import org.apache.commons.lang3.StringUtils;
@@ -47,6 +49,15 @@ public class FileServiceImpl implements FileService {
         file.setState(1);
         file.setRemark(param.getRemark());
         fileMapper.insertSelective(file);
+    }
+
+    @Override
+    public String getFilePath(String fileNo) {
+        File file = fileMapper.selectByFileNo(fileNo);
+        if (file == null) {
+            throw new CommonJsonException(ErrorEnum.E_4000, "文件不存在");
+        }
+        return file.getFilePath();
     }
 
 }
