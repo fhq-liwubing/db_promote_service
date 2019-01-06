@@ -15,4 +15,9 @@ public class Constants {
      */
     public static final String SESSION_USER_INFO = "userInfo";
     public static final String SESSION_USER_PERMISSION = "userPermission";
+
+    /**
+     * 文件路径
+     */
+    public static final String FILE_DIR = "./data/file/";
 }

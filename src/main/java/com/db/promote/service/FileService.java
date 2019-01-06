@@ -3,6 +3,7 @@ package com.db.promote.service;
 import com.db.promote.common.PageRequest;
 import com.db.promote.entity.File;
 import com.db.promote.param.FileQueryParam;
+import com.db.promote.param.FileUploadParam;
 import com.github.pagehelper.PageInfo;
 
 import java.util.List;
@@ -17,4 +18,5 @@ public interface FileService {
 
     List<File> queryAll(String terminalNo);
 
+    void uploadFinish(FileUploadParam param, String fileNo, String filePath);
 }

@@ -1,20 +1,25 @@
 package com.db.promote.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.db.promote.config.exception.CommonJsonException;
 import com.db.promote.entity.File;
 import com.db.promote.param.FileQueryParam;
+import com.db.promote.param.FileUploadParam;
 import com.db.promote.service.FileService;
 import com.db.promote.util.CommonUtil;
 import com.db.promote.util.DateUtil;
+import com.db.promote.util.constants.Constants;
+import com.db.promote.util.constants.ErrorEnum;
 import com.db.promote.vo.FileVO;
 import com.github.pagehelper.PageInfo;
+import org.springframework.beans.factory.InitializingBean;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.io.*;
+import java.util.UUID;
 
 /**
  * @author kun
@@ -22,7 +27,7 @@ import javax.servlet.http.HttpServletRequest;
  */
 @RestController
 @RequestMapping("/file")
-public class FileController {
+public class FileController implements InitializingBean {
 
     @Autowired
     private HttpServletRequest request;
@@ -40,8 +45,32 @@ public class FileController {
         return CommonUtil.successList(fileService.queryAll(terminalNo));
     }
 
-    public JSONObject upload() {
-        return null;
+    /**
+     * 不指定特定终端时 terminalNo = 0
+     */
+    @PostMapping("/upload")
+    public JSONObject upload(MultipartFile file, FileUploadParam param) throws IOException {
+
+        if (file == null) {
+            throw new CommonJsonException(ErrorEnum.E_90003, "未指定文件");
+        }
+
+        String fileNo = UUID.randomUUID().toString().replace("-", "");
+        String filePath = Constants.FILE_DIR + fileNo;
+        java.io.File destFile = new java.io.File(filePath);
+
+        try (
+                BufferedWriter writer = new BufferedWriter(new FileWriter(destFile));
+                BufferedReader reader = new BufferedReader(new InputStreamReader(file.getInputStream()))
+        ) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                writer.write(line);
+            }
+            writer.flush();
+        }
+        fileService.uploadFinish(param, fileNo, filePath);
+        return CommonUtil.successJson();
     }
 
     public JSONObject downLoad(String fileNo) {
@@ -63,4 +92,12 @@ public class FileController {
         return vo;
     }
 
+    @Override
+    public void afterPropertiesSet() throws Exception {
+        java.io.File dir = new java.io.File(Constants.FILE_DIR);
+        if (!dir.exists()) {
+            //noinspection ResultOfMethodCallIgnored
+            dir.mkdirs();
+        }
+    }
 }

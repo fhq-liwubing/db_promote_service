@@ -4,9 +4,11 @@ import com.db.promote.common.PageRequest;
 import com.db.promote.dao.FileMapper;
 import com.db.promote.entity.File;
 import com.db.promote.param.FileQueryParam;
+import com.db.promote.param.FileUploadParam;
 import com.db.promote.service.FileService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,6 +33,20 @@ public class FileServiceImpl implements FileService {
     @Override
     public List<File> queryAll(String terminalNo) {
         return fileMapper.selectAll(terminalNo);
+    }
+
+    @Override
+    public void uploadFinish(FileUploadParam param, String fileNo, String filePath) {
+        File file = new File();
+        file.setFileNo(fileNo);
+        file.setFileType(0);
+        file.setFileName(param.getFileName());
+        file.setFilePath(filePath);
+        file.setBelongTerminal(StringUtils.isBlank(param.getTerminalNo()) ? "0" : param.getTerminalNo());
+        file.setShare(param.getShare());
+        file.setState(1);
+        file.setRemark(param.getRemark());
+        fileMapper.insertSelective(file);
     }
 
 }
