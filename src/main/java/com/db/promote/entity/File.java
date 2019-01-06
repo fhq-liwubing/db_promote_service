@@ -5,7 +5,7 @@ import java.time.LocalDateTime;
 import lombok.Data;
 
 /**
-* Created by Mybatis Generator 2018/12/26
+* Created by Mybatis Generator 2019/01/06
 */
 @Data
 public class File implements Serializable {
@@ -18,6 +18,8 @@ public class File implements Serializable {
     private String fileName;
 
     private String filePath;
+
+    private String belongTerminal = "0";
 
     private Integer share;
 
