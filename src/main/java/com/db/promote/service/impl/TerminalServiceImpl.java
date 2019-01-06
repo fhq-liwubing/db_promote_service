@@ -37,6 +37,11 @@ public class TerminalServiceImpl implements TerminalService {
     private CdkeyMapper cdkeyMapper;
 
     @Override
+    public List<String> queryAll() {
+        return terminalMapper.selectAll();
+    }
+
+    @Override
     public void activate(TerminalActivateParam activateParam) {
 
         Cdkey cdkey = cdkeyMapper.selectByCdkey(activateParam.getCdkey());

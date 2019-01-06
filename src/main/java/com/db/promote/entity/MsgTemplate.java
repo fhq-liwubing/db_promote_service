@@ -15,6 +15,8 @@ public class MsgTemplate implements Serializable {
 
     private String templateName;
 
+    private Integer templateType;
+
     private String content;
 
     private Integer paramSize;

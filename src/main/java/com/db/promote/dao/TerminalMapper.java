@@ -33,4 +33,6 @@ public interface TerminalMapper {
     Terminal selectByTerminalNo(String terminalNo);
 
     List<Terminal> selectByTerminalNos(String[] identityNos);
+
+    List<String> selectAll();
 }

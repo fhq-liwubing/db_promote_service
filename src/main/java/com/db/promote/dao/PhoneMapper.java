@@ -30,5 +30,5 @@ public interface PhoneMapper {
 
     List<Phone> selectByPhoneNos(String[] phoneNos);
 
-    List<String> selectPhoneNoFuzzy(String phoneNo);
+    List<String> selectAll();
 }

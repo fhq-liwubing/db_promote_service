@@ -39,6 +39,11 @@ public class TerminalController {
         return CommonUtil.successJson();
     }
 
+    @GetMapping("/all")
+    public JSONObject all() {
+        return CommonUtil.successList(terminalService.queryAll());
+    }
+
     @GetMapping("/list")
     public JSONObject list(HttpServletRequest request) {
         PageInfo<Terminal> pageInfo = terminalService

@@ -351,12 +351,8 @@
             #{phoneNo}
         </foreach>
     </select>
-    <select id="selectPhoneNoFuzzy" resultType="java.lang.String">
-        select phone_no from phone
-        <if test="phoneNo != null and phoneNo != ''">
-            where phone_no like concat('%', #{phoneNo,jdbcType=VARCHAR}, '%')
-        </if>
-        limit 10
+    <select id="selectAll" resultType="java.lang.String">
+        select phone_no from phone where state = 1
     </select>
 
 </mapper>

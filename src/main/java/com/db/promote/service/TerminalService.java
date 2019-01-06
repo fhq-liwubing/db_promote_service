@@ -6,11 +6,15 @@ import com.db.promote.param.*;
 import com.db.promote.vo.TerminalVO;
 import com.github.pagehelper.PageInfo;
 
+import java.util.List;
+
 /**
  * @author kun
  * @version 2018-12-28 14:36
  */
 public interface TerminalService {
+    List<String> queryAll();
+
     void activate(TerminalActivateParam activateParam);
 
     void check(String imeiNo);

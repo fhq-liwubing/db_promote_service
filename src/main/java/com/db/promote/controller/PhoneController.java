@@ -3,7 +3,6 @@ package com.db.promote.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.db.promote.entity.Phone;
 import com.db.promote.param.PhoneAddParam;
-import com.db.promote.param.PhoneFuzzyQueryParam;
 import com.db.promote.param.PhoneQueryParam;
 import com.db.promote.param.PhoneUpdateParam;
 import com.db.promote.service.PhoneService;
@@ -36,9 +35,9 @@ public class PhoneController {
         return CommonUtil.successPage(pageInfo, this::buildVO);
     }
 
-    @GetMapping("/fuzzy")
-    public JSONObject fuzzy(PhoneFuzzyQueryParam param) {
-        List<String> phoneNoList = phoneService.fuzzyQuery(param.getPhoneNo());
+    @GetMapping("/all")
+    public JSONObject fuzzy() {
+        List<String> phoneNoList = phoneService.queryAll();
         return CommonUtil.successList(phoneNoList);
     }
 

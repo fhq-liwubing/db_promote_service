@@ -13,7 +13,7 @@ import java.util.List;
  */
 public interface PhoneService {
 
-    List<String> fuzzyQuery(String phoneNo);
+    List<String> queryAll();
 
     void add(PhoneAddParam param);
 

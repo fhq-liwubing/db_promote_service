@@ -285,4 +285,7 @@
             #{terminalNo}
         </foreach>
     </select>
+    <select id="selectAll" resultType="string">
+        select terminal_no from terminal where state = 1
+    </select>
 </mapper>
