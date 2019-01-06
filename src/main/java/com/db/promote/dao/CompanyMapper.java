@@ -24,4 +24,6 @@ public interface CompanyMapper {
     List<Company> selectByExample(Company example);
 
     Company selectByCompanyNo(String companyNo);
+
+    List<Company> selectByCompanyNoIn(String[] companyNo);
 }

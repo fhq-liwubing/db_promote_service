@@ -3,8 +3,10 @@ package com.db.promote.dao;
 import com.db.promote.entity.TaskCall;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
-* Created by Mybatis Generator 2018/12/26
+* Created by Mybatis Generator 2019/01/06
 */
 @Mapper
 public interface TaskCallMapper {
@@ -19,4 +21,6 @@ public interface TaskCallMapper {
     int updateByPrimaryKeySelective(TaskCall record);
 
     int updateByPrimaryKey(TaskCall record);
+
+    void insertList(List<TaskCall> list);
 }
