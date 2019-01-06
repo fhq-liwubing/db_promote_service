@@ -339,15 +339,24 @@
         where phone_no = #{phoneNo,jdbcType=VARCHAR}
     </update>
     <select id="selectByPhoneNo" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List"/>
+        select
+        <include refid="Base_Column_List"/>
         from phone where phone_no = #{phoneNo,jdbcType=VARCHAR}
     </select>
     <select id="selectByPhoneNos" resultMap="BaseResultMap">
-        select <include refid="Base_Column_List"/>
+        select
+        <include refid="Base_Column_List"/>
         from phone where phone_no in
         <foreach collection="array" item="phoneNo" open="(" close=")" separator=",">
             #{phoneNo}
         </foreach>
+    </select>
+    <select id="selectPhoneNoFuzzy" resultType="java.lang.String">
+        select phone_no from phone
+        <if test="phoneNo != null and phoneNo != ''">
+            where phone_no like concat('%', #{phoneNo,jdbcType=VARCHAR}, '%')
+        </if>
+        limit 10
     </select>
 
 </mapper>

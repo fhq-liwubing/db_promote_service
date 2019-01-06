@@ -29,4 +29,6 @@ public interface PhoneMapper {
     Phone selectByPhoneNo(String phoneNo);
 
     List<Phone> selectByPhoneNos(String[] phoneNos);
+
+    List<String> selectPhoneNoFuzzy(String phoneNo);
 }

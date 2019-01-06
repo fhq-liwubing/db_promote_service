@@ -3,6 +3,7 @@ package com.db.promote.controller;
 import com.alibaba.fastjson.JSONObject;
 import com.db.promote.entity.Phone;
 import com.db.promote.param.PhoneAddParam;
+import com.db.promote.param.PhoneFuzzyQueryParam;
 import com.db.promote.param.PhoneQueryParam;
 import com.db.promote.param.PhoneUpdateParam;
 import com.db.promote.service.PhoneService;
@@ -15,6 +16,7 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 /**
  * @author kun
@@ -32,6 +34,12 @@ public class PhoneController {
         PageInfo<Phone> pageInfo = phoneService
                 .pageSearch(CommonUtil.requestToPageReq(request, PhoneQueryParam.class));
         return CommonUtil.successPage(pageInfo, this::buildVO);
+    }
+
+    @GetMapping("/fuzzy")
+    public JSONObject fuzzy(PhoneFuzzyQueryParam param) {
+        List<String> phoneNoList = phoneService.fuzzyQuery(param.getPhoneNo());
+        return CommonUtil.successList(phoneNoList);
     }
 
     @PostMapping("/add")

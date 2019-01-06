@@ -31,6 +31,11 @@ public class PhoneServiceImpl implements PhoneService {
     @Autowired
     private TerminalMapper terminalMapper;
 
+    @Override
+    public List<String> fuzzyQuery(String phoneNo) {
+        return phoneMapper.selectPhoneNoFuzzy(phoneNo);
+    }
+
     @SuppressWarnings("Duplicates")
     @Override
     public void add(PhoneAddParam param) {
