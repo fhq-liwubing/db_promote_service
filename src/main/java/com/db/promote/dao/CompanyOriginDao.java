@@ -33,4 +33,12 @@ public interface CompanyOriginDao {
      * @return
      */
     int countCompanyOrigin(JSONObject jsonObject);
+
+
+    /**
+     * 根据省份查找
+     * @param provinces
+     * @return
+     */
+    List<CompanyOrigin> findCompanyByProvince(@Param("provinces") String provinces);
 }

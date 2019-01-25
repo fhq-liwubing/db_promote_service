@@ -43,4 +43,9 @@ public class CompayOriginServiceImpl implements CompanyOriginService {
         List<JSONObject> list = companyOriginDao.listCompanyOrigin(jsonObject);
         return CommonUtil.successPage(jsonObject, list, count);
     }
+
+    @Override
+    public List<CompanyOrigin> findCompanyByProvince(String provinces) {
+        return companyOriginDao.findCompanyByProvince(provinces);
+    }
 }

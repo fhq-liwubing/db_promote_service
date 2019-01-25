@@ -4,6 +4,8 @@ import com.db.promote.common.SourceTypeEnum;
 import com.db.promote.entity.CompanyOrigin;
 import com.db.promote.service.CompanyOriginService;
 import com.db.promote.util.ExcelUtil;
+import com.db.promote.util.GsonUtil;
+import org.apache.commons.lang3.StringUtils;
 import org.apache.poi.hssf.usermodel.HSSFCell;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -90,15 +92,21 @@ public class GanjiClient {
                     HSSFCell accName = hssfRow.getCell(3);
                     HSSFCell addr = hssfRow.getCell(4);
                     HSSFCell phone = hssfRow.getCell(5);
-                        companyOrigin.setBusiness(ExcelUtil.getValue(business));
-                        companyOrigin.setCompayName(ExcelUtil.getValue(compayName));
-                        companyOrigin.setAccName(ExcelUtil.getValue(accName));
-                        companyOrigin.setAddr(ExcelUtil.getValue(addr));
-                        companyOrigin.setPhone(ExcelUtil.getValue(phone));
+                    companyOrigin.setBusiness(ExcelUtil.getValue(business));
+                    companyOrigin.setCompayName(ExcelUtil.getValue(compayName));
+                    companyOrigin.setAccName(ExcelUtil.getValue(accName));
+                    companyOrigin.setAddr(ExcelUtil.getValue(addr));
+                    companyOrigin.setPhone(ExcelUtil.getValue(phone));
                     companyOrigin.setSourceType(SourceTypeEnum.GANJI);
-                   // commpayList.add(commpay);
+                    if(!StringUtils.isBlank(companyOrigin.getAddr())){
+                        int index =  companyOrigin.getAddr().indexOf("-");
+                        String city =companyOrigin.getAddr().substring(0,index);
+                        companyOrigin.setProvinces(CityClient.findObjectProvince(city));
+                        companyOrigin.setCity(city);
+                    }
+                    log.info("数据：{}",GsonUtil.buildGson().toJson(companyOrigin));
                     //这里保存数据库
-                    companyOriginService.insert(companyOrigin);
+                   companyOriginService.insert(companyOrigin);
                 }
             }
         }
@@ -230,6 +238,8 @@ public class GanjiClient {
         fileName = exportPath + fileName;
         ExcelUtil.createWorkBook(list, keys, columns).write(new FileOutputStream(fileName));
     }
+
+
 
 
 
